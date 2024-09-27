@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
 
+    // code from tutorial : not working
+    //Will be fixed by Seo-Eun
     [SerializeField] private float speed;
     private Rigidbody2D body;
 
