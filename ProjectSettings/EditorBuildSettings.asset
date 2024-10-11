@@ -4,5 +4,14 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Final Proj/StartMenu.unity
+    guid: 8af8fc2d93ee7484d99c6e3e93147b78
+  - enabled: 1
+    path: Assets/Scenes/Final Proj/LoseScreen.unity
+    guid: 28853d95a14da494ebdedf5d5084f152
+  - enabled: 1
+    path: Assets/Scenes/Final Proj/Tutorial Level.unity
+    guid: 6eb10bcd367e047879c99676e5e88b82
   m_configObjects: {}
