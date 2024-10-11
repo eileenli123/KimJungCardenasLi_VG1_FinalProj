@@ -8,6 +8,7 @@ TagManager:
   - CoinGem
   - SocialGem
   - HealthGem
+  - Enemy
   layers:
   - Default
   - TransparentFX

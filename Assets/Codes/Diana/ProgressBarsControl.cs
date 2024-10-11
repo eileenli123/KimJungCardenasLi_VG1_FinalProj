@@ -18,10 +18,10 @@ public class ProgressBarsControl : MonoBehaviour
         MoneyBar.value = 0f;
         SocialBar.value = 0f;
 
-        HealthBar.maxValue = 100f;
-        GPABar.maxValue = 100f;
-        MoneyBar.maxValue = 100f;
-        SocialBar.maxValue = 100f;
+        HealthBar.maxValue = 50f;
+        GPABar.maxValue = 50f;
+        MoneyBar.maxValue = 50f;
+        SocialBar.maxValue = 50f;
     }
 
      public void IncreaseHealth(float value)
