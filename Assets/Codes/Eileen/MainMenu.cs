@@ -7,7 +7,7 @@ public class MainMenu : MonoBehaviour
 {
     public void startTutorialLevel()
     {
-        SceneManager.LoadSceneAsync(2); //load scene 1 from build scene setting (tutorial level) 
+        SceneManager.LoadSceneAsync(3); //load scene 1 from build scene setting (tutorial level) 
     }
 
     public void goToMainMenu()

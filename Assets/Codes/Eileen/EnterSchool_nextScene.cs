@@ -8,13 +8,14 @@ public class EnterSchool_nextScene : MonoBehaviour
     void OnCollisionEnter2D(Collision2D other)
     {
 
-        if (other.gameObject.GetComponent<PlayerMovement>())
+        if (other.gameObject.GetComponent<PlayerController2>())
         {
             print(other.gameObject.name);
- 
 
-            string sceneName = SceneManager.GetActiveScene().name;
-            SceneManager.LoadScene(sceneName);
+            SceneManager.LoadScene(2);
+
+            //string sceneName = SceneManager.GetActiveScene().name;
+            //SceneManager.LoadScene(sceneName);
         }
     }
 }
