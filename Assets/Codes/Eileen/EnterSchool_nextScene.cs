@@ -12,7 +12,7 @@ public class EnterSchool_nextScene : MonoBehaviour
         {
             print(other.gameObject.name);
 
-            SceneManager.LoadScene(4);
+            SceneManager.LoadScene("Level1");
 
             //string sceneName = SceneManager.GetActiveScene().name;
             //SceneManager.LoadScene(sceneName);

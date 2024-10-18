@@ -22,8 +22,8 @@ public class PlayerMoveToSlow : MonoBehaviour
 
     void RestartLevel()
     {
-        SceneManager.LoadSceneAsync(1);
-        
+        SceneManager.LoadSceneAsync("Lose");
+
     }
 
 }

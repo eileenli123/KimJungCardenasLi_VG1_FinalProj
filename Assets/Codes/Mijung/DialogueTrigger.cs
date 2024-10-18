@@ -13,5 +13,13 @@ namespace Mijung
         {
             FindObjectOfType<DialogueManagement>().StartDialogue(dialogue);
         }
+        public void Start()
+        {
+            // Keeps the gameobject alive on scene changes
+            DontDestroyOnLoad(gameObject);
+
+            // Find the dialogue manager and plays the start dialogue
+            FindObjectOfType<DialogueManagement>().StartDialogue(dialogue);
+        }
     }
 }
