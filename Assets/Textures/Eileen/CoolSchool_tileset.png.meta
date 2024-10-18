@@ -43,12 +43,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 30
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -108,7 +108,532 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: CoolSchool_tileset_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 336
+        width: 336
+        height: 240
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37244199dc81d41798207671d27d771c
+      internalID: -2053019086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CoolSchool_tileset_1
+      rect:
+        serializedVersion: 2
+        x: 339
+        y: 384
+        width: 42
+        height: 144
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd0df1f026fea4003884b4010c63f398
+      internalID: -675575375
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CoolSchool_tileset_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 266
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8c3e2b0210be4a709cc54f21bd9957a
+      internalID: -894145083
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CoolSchool_tileset_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 170
+        width: 384
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c2de71cfe9c24c8487536c3df4ee7a4
+      internalID: 577596701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CoolSchool_tileset_4
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 96
+        width: 27
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ce4e6ee54deb49b389bee2e4726eca7
+      internalID: 1246870446
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CoolSchool_tileset_5
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 96
+        width: 27
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 766d80e9d05144bfdad833937b471c08
+      internalID: -1616776640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CoolSchool_tileset_6
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 98
+        width: 24
+        height: 45
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6fe79c54fc9214b34933c812a1a55849
+      internalID: 941784655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CoolSchool_tileset_7
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 98
+        width: 24
+        height: 45
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8dc695865c1c450e96b18291bfbc20c
+      internalID: 478673693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CoolSchool_tileset_8
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 96
+        width: 29
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90b287b04f07c4c01a25bd758f97343c
+      internalID: 1550319300
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CoolSchool_tileset_9
+      rect:
+        serializedVersion: 2
+        x: 249
+        y: 96
+        width: 29
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef744c81daa0740dc99187229615f7fa
+      internalID: 1445769054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CoolSchool_tileset_10
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 98
+        width: 28
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78b2e889c060b454db721daf74e58c5a
+      internalID: 277447193
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CoolSchool_tileset_11
+      rect:
+        serializedVersion: 2
+        x: 344
+        y: 98
+        width: 28
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a04e0ac82e6740058e72dcd1ac697c2
+      internalID: -848910763
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CoolSchool_tileset_12
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 48
+        width: 35
+        height: 41
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69bd9b9e928754627b85b395fdd17152
+      internalID: -1421573229
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CoolSchool_tileset_13
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 49
+        width: 34
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 312a591b0afe7490d9cb16752e2d78fc
+      internalID: 1329827996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CoolSchool_tileset_14
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 48
+        width: 34
+        height: 39
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f72d81df862d4dd0aedadf44670a629
+      internalID: -2009322389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CoolSchool_tileset_15
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 48
+        width: 40
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 217b8097e622144e2bd2d1540cf9b5a7
+      internalID: -1606349426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CoolSchool_tileset_16
+      rect:
+        serializedVersion: 2
+        x: 197
+        y: 50
+        width: 38
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1dcb79ad846c94a658a436fe4befc63d
+      internalID: 1854869488
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CoolSchool_tileset_17
+      rect:
+        serializedVersion: 2
+        x: 247
+        y: 48
+        width: 31
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 194de4bf199514feab594fff24c5eac1
+      internalID: -42868372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CoolSchool_tileset_18
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 6
+        width: 37
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8cb29e4828b9343319205b331a3e796b
+      internalID: 656249270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CoolSchool_tileset_19
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 4
+        width: 29
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2005848a45978428f9bd68432f9ffb7c
+      internalID: -791685593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CoolSchool_tileset_20
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 4
+        width: 32
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0922cdc1bd337477ca49f6a910cae64a
+      internalID: 1373246278
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CoolSchool_tileset_21
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 3
+        width: 30
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2478f68cc0321461cbe91b4253e03c82
+      internalID: -1610693297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CoolSchool_tileset_22
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 1
+        width: 28
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6e0f962c6654405f8d974a5679a2c28
+      internalID: 1969244704
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CoolSchool_tileset_23
+      rect:
+        serializedVersion: 2
+        x: 254
+        y: 1
+        width: 21
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f896c5b6b30384e1eb246c6c4aee6866
+      internalID: 955145290
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CoolSchool_tileset_24
+      rect:
+        serializedVersion: 2
+        x: 291
+        y: 2
+        width: 38
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0666f17c1bbca426587f2d64502befb8
+      internalID: -1465920451
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -119,7 +644,32 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      CoolSchool_tileset_0: -2053019086
+      CoolSchool_tileset_1: -675575375
+      CoolSchool_tileset_10: 277447193
+      CoolSchool_tileset_11: -848910763
+      CoolSchool_tileset_12: -1421573229
+      CoolSchool_tileset_13: 1329827996
+      CoolSchool_tileset_14: -2009322389
+      CoolSchool_tileset_15: -1606349426
+      CoolSchool_tileset_16: 1854869488
+      CoolSchool_tileset_17: -42868372
+      CoolSchool_tileset_18: 656249270
+      CoolSchool_tileset_19: -791685593
+      CoolSchool_tileset_2: -894145083
+      CoolSchool_tileset_20: 1373246278
+      CoolSchool_tileset_21: -1610693297
+      CoolSchool_tileset_22: 1969244704
+      CoolSchool_tileset_23: 955145290
+      CoolSchool_tileset_24: -1465920451
+      CoolSchool_tileset_3: 577596701
+      CoolSchool_tileset_4: 1246870446
+      CoolSchool_tileset_5: -1616776640
+      CoolSchool_tileset_6: 941784655
+      CoolSchool_tileset_7: 478673693
+      CoolSchool_tileset_8: 1550319300
+      CoolSchool_tileset_9: 1445769054
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

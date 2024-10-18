@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Final Proj/Diana_2.unity
     guid: 7c089582fee07451c9be2013db6fb0f8
+  - enabled: 1
+    path: Assets/Scenes/Final Proj/Level 1.unity
+    guid: 39fc75a763de241318f80d2df4f335e6
   m_configObjects: {}
