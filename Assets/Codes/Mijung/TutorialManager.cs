@@ -8,6 +8,20 @@ public class TutorialManager : MonoBehaviour
     private int popUpIndex;
     public bool canPlayerMove = false;
 
+    //COROUTINE CODE TO WAIT 2 SECONDS AFTER FIRST ACTION
+    // IEnumerator changePopUpCoroutine;
+
+    // void Start(){
+    //     changePopUpCoroutine = changePopUp();
+    //     StartCoroutine(changePopUpCoroutine);
+    // }
+
+    // IEnumerator changePopUp(){
+        
+    //         yield return new WaitForSeconds(2);
+    //         popUpIndex++;
+        
+    // }
     // Update is called once per frame
     void Update()
     {
@@ -29,6 +43,7 @@ public class TutorialManager : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
             {
+
                 popUpIndex++;
                 canPlayerMove = true;  // Allow the player to move after this step
             }
