@@ -11,6 +11,7 @@ public class ProgressBarsControl : MonoBehaviour
     public Slider MoneyBar;
     public Slider SocialBar;
 
+    private float playerMoney;
 
     void Start()
     {
@@ -24,10 +25,40 @@ public class ProgressBarsControl : MonoBehaviour
         Debug.Log("Loaded Money: " + MoneyBar.value);
         Debug.Log("Loaded Social: " + SocialBar.value);
 
+        playerMoney = PlayerPrefs.GetFloat("PlayerMoney", 0f); // Load money as float
+        Debug.Log("Loaded Player Money: " + playerMoney);
+
         HealthBar.maxValue = 50f;
         GPABar.maxValue = 50f;
         MoneyBar.maxValue = 50f;
         SocialBar.maxValue = 50f;
+    }
+
+public bool DecreaseMoney(float amount)  
+    {
+        if (playerMoney >= amount)
+        {
+            playerMoney -= amount; // Update player money
+            PlayerPrefs.SetFloat("PlayerMoney", playerMoney);  // Save the updated player money
+            PlayerPrefs.Save();
+            Debug.Log("Money decreased, current amount: " + playerMoney);
+
+            // Update the MoneyBar slider
+            MoneyBar.value = Mathf.Clamp(MoneyBar.value - amount, 0f, MoneyBar.maxValue);
+            PlayerPrefs.SetFloat("Money", MoneyBar.value);  // Save MoneyBar progress
+            PlayerPrefs.Save();
+
+            return true; // Transaction successful
+        }
+        else
+        {
+            Debug.Log("Not enough money!");
+            return false; // Not enough money
+        }
+    }
+    public float GetMoney() 
+    {
+        return playerMoney;
     }
 
     public void IncreaseHealth(float value)
@@ -54,10 +85,16 @@ public class ProgressBarsControl : MonoBehaviour
         }
     }
 
-    public void IncreaseMoney(float value)
+    public void IncreaseMoney(float amount)
     {
-        MoneyBar.value = Mathf.Clamp(MoneyBar.value + value, 0f, MoneyBar.maxValue);
-        PlayerPrefs.SetFloat("Money", MoneyBar.value);  // Save progress
+        playerMoney += amount; // Update player money
+        PlayerPrefs.SetFloat("PlayerMoney", playerMoney);  // Save the player money
+        PlayerPrefs.Save();
+        Debug.Log("Money increased, current amount: " + playerMoney);
+
+        // Update the MoneyBar slider
+        MoneyBar.value = Mathf.Clamp(MoneyBar.value + amount, 0f, MoneyBar.maxValue);
+        PlayerPrefs.SetFloat("Money", MoneyBar.value); 
         PlayerPrefs.Save();
 
 
@@ -82,11 +119,14 @@ public class ProgressBarsControl : MonoBehaviour
     private void RestartGame()
     {
         Debug.Log("Restarting game");
+
         // Clear all saved progress
         PlayerPrefs.DeleteKey("Health");
         PlayerPrefs.DeleteKey("GPA");
         PlayerPrefs.DeleteKey("Money");
+        PlayerPrefs.DeleteKey("PlayerMoney");
         PlayerPrefs.DeleteKey("Social");
+
         // Reload the current scene, which will reset all bars to 0
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }

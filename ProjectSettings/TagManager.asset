@@ -9,6 +9,7 @@ TagManager:
   - SocialGem
   - HealthGem
   - Enemy
+  - Friend
   layers:
   - Default
   - TransparentFX
