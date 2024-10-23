@@ -30,6 +30,10 @@ public class FriendInteraction : MonoBehaviour
         cameraMovement = FindObjectOfType<CameraMovement>();
 
         GameObject dialogueDataObject = GameObject.Find("DialogueData");
+        if (dialogueDataObject != null)
+    {
+        dialogueData = dialogueDataObject.GetComponent<Dialogue_copy>();
+    }
         if (dialogueData == null)
             {
                 Debug.LogError("Dialogue_copy component missing on this GameObject!");
