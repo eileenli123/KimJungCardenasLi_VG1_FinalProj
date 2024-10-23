@@ -26,7 +26,17 @@ namespace Diana
 
         public void StartDialogue(Dialogue_copy dialogue)
         {
-            nameText.text = dialogue.name;
+            // Debugging to check for missing references
+        if (dialogue == null)
+        {
+            Debug.LogError("Dialogue_copy object is null!");
+            return;
+        }
+
+            Debug.Log("Starting dialogue with: " + dialogue.dialogueName);
+            nameText.text = dialogue.dialogueName;
+
+            nameText.text = dialogue.dialogueName;
             currentDialogue = dialogue;
 
             sentences.Clear();
@@ -63,7 +73,7 @@ namespace Diana
 
         public void SelectChoice(int choiceIndex)
         {
-            float choiceCost = currentDialogue.choices[choiceIndex].coinCost; // Treat cost as float
+            float choiceCost = currentDialogue.choices[choiceIndex].coinCost;
 
             // Check if player has enough money for the selected choice
             if (progressBarControl.DecreaseMoney(choiceCost)) // Successfully deducted money
@@ -71,6 +81,14 @@ namespace Diana
                 // Reward social gems
                 float gemReward = currentDialogue.choices[choiceIndex].socialGemReward;
                 progressBarControl.IncreaseSocial(gemReward);
+
+                // Reward academic gems 
+                float academicReward = currentDialogue.choices[choiceIndex].academicGemReward;
+                progressBarControl.IncreaseGPA(academicReward);
+
+                // Reward money gems
+                float moneyReward = currentDialogue.choices[choiceIndex].moneyGemReward;
+                progressBarControl.IncreaseMoney(moneyReward);
 
                 // Show the friend's response
                 dialogueText.text = currentDialogue.choices[choiceIndex].friendResponse;

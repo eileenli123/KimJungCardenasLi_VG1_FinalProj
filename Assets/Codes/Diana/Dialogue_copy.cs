@@ -1,14 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 namespace Diana
 {
     [System.Serializable]
 
-    public class Dialogue_copy
+    public class Dialogue_copy : MonoBehaviour
     {
-        public string name;
+        public string dialogueName;
         [TextArea(3, 10)]
 
         public string[] sentences;
