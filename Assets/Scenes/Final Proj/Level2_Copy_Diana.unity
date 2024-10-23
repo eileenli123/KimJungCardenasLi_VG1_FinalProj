@@ -11452,7 +11452,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1332297335}
   regularYOffset: 1
-  dialogueYOffset: 3
+  dialogueYOffset: 1.25
   zOffset: -5
 --- !u!114 &1830578439
 MonoBehaviour:

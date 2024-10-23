@@ -29,8 +29,7 @@ public class FriendInteraction : MonoBehaviour
         playerMovement = FindObjectOfType<PlayerController2>();
         cameraMovement = FindObjectOfType<CameraMovement>();
 
-        
-        dialogueData = GetComponent<Dialogue_copy>();
+        GameObject dialogueDataObject = GameObject.Find("DialogueData");
         if (dialogueData == null)
             {
                 Debug.LogError("Dialogue_copy component missing on this GameObject!");
@@ -51,7 +50,7 @@ public class FriendInteraction : MonoBehaviour
             dialogueManager.StartDialogue(dialogueData); 
 
             // Shift the camera upward for the dialogue
-            cameraFollowPlayer.StartDialogue();  // Ensure camera moves up
+            cameraFollowPlayer.StartDialogue(); 
 
             // Pause player movement and camera
             playerMovement.enabled = false; 
