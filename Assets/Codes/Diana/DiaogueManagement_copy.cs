@@ -13,7 +13,7 @@ namespace Diana
         public TextMeshProUGUI nameText;
         public TextMeshProUGUI dialogueText;
         public TextMeshProUGUI[] choiceTexts;
-        private Dialogue_copy currentDialogue;
+        public Dialogue_copy currentDialogue;
         private Queue<string> sentences;
         private ProgressBarsControl progressBarControl;
 
@@ -26,7 +26,6 @@ namespace Diana
 
         public void StartDialogue(Dialogue_copy dialogue)
         {
-            // Debugging to check for missing references
         if (dialogue == null)
         {
             Debug.LogError("Dialogue_copy object is null!");
@@ -35,15 +34,20 @@ namespace Diana
 
             Debug.Log("Starting dialogue with: " + dialogue.dialogueName);
             nameText.text = dialogue.dialogueName;
-
-            nameText.text = dialogue.dialogueName;
             currentDialogue = dialogue;
 
+            if (sentences == null)
+            {
+                sentences = new Queue<string>();
+            }
+
             sentences.Clear();
+            Debug.Log("Sentences queue cleared.");
 
             foreach (string sentence in dialogue.sentences)
             {
                 sentences.Enqueue(sentence);
+                Debug.Log("Enqueued sentence: " + sentence);
             }
 
             DisplayNextSentence();
@@ -51,22 +55,30 @@ namespace Diana
 
         public void DisplayNextSentence()
         {
+            Debug.Log("Sentences.Count is of type: " + sentences.Count.GetType());
+            Debug.Log("Sentences left: " + sentences.Count);
+            string sentence = sentences.Dequeue(); // Dequeue sentence
+            Debug.Log("Displayed sentence: " + sentence);
+            
+            dialogueText.text = sentence;
+            Debug.Log("Sentences after dequeue: " + sentences.Count);
+
             if (sentences.Count == 0)
             {
-                DisplayChoices();
-                return;
+                Debug.Log("No more sentences left, now calling DisplayChoices...");
+                DisplayChoices(); 
             }
-
-            string sentence = sentences.Dequeue();
-            dialogueText.text = sentence;
-
         }
+
 
         void DisplayChoices()
         {
+            Debug.Log("Displaying choices...");
             for (int i = 0; i < currentDialogue.choices.Length; i++)
             {
-                choiceTexts[i].text = currentDialogue.choices[i].playerDialogue +
+                Transform choiceParent = choiceTexts[i].transform.parent;
+                choiceTexts[i].transform.parent.gameObject.SetActive(true); // Ensure the parent holding the text is active
+                choiceTexts[i].text = currentDialogue.choices[i].playerDialogue + 
                                       " (Cost: " + currentDialogue.choices[i].coinCost + " coins)";
             }
         }

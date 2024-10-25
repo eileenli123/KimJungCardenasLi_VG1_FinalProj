@@ -6,7 +6,7 @@ public class CameraFollowPlayer : MonoBehaviour
 {
     public Transform player;
     public float regularYOffset = 1f; 
-    public float dialogueYOffset = 3f; 
+    public float dialogueYOffset = 1.25f; 
     public float zOffset = -5f; 
     private bool isDialogueActive = false;
 

@@ -20,30 +20,25 @@ public class FriendInteraction : MonoBehaviour
     private CameraMovement cameraMovement; // Reference to camera movement
     private bool isDialogueActive = false; // Ensure dialogue triggers only once
 
-    void Start()
-    {
-        // Hide the dialogue UI when the game starts
-        dialogueUI.SetActive(false);
+        void Start()
+        {
+            // Hide the dialogue UI when the game starts
+            dialogueUI.SetActive(false);
 
-        // Find player movement and camera movement scripts
-        playerMovement = FindObjectOfType<PlayerController2>();
-        cameraMovement = FindObjectOfType<CameraMovement>();
+            // Find player movement and camera movement scripts
+            playerMovement = FindObjectOfType<PlayerController2>();
+            cameraMovement = FindObjectOfType<CameraMovement>();
 
-        GameObject dialogueDataObject = GameObject.Find("DialogueData");
-        if (dialogueDataObject != null)
-    {
-        dialogueData = dialogueDataObject.GetComponent<Dialogue_copy>();
-    }
-        if (dialogueData == null)
+            if (dialogueData == null)
             {
-                Debug.LogError("Dialogue_copy component missing on this GameObject!");
+                Debug.LogError("Dialogue_copy component missing on the DialogueData GameObject!");
             }
-    }
+        }
 
     // Check when player enters the trigger area of the friend sprite
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player") && !isDialogueActive)  // Ensure dialogue starts only once
+        if (other.CompareTag("Player") && !isDialogueActive && dialogueData != null)  // Ensure dialogue starts only once
         {
             isDialogueActive = true; // Set the dialogue as active
 

@@ -33,11 +33,13 @@ void Start()
 
     public void StartDialogue()
     {
-        isDialogueActive = true;
+        isDialogueActive = true;  // Simply set the flag to stop camera movement
+        Debug.Log("Camera movement stopped for dialogue.");
     }
 
     public void EndDialogue()
     {
-        isDialogueActive = false;
+        isDialogueActive = false;  // Reset the flag to resume camera movement
+        Debug.Log("Camera movement resumed.");
     }
-}
+}   
