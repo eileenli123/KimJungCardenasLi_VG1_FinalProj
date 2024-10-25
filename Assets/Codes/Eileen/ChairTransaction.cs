@@ -9,11 +9,18 @@ public class ChairTransaction : MonoBehaviour
     private bool hasActivatedOnce = false;  // To track if the effect has already been applied
     public float freezeDuration = 3f;  // Time the player will be frozen
     public TextMeshPro textMeshPro;  // Reference to the TextMeshPro component in the Counter object
-    public GameObject GPA_gem_prefab; 
+    public GameObject GPA_gem_prefab;
+    public GameObject textInteraction; 
 
     private void Start()
     {
-        textMeshPro.GetComponent<MeshRenderer>().enabled = false; 
+        if (textInteraction != null)
+        {
+            textInteraction.SetActive(false);
+        }
+
+        textMeshPro.GetComponent<MeshRenderer>().enabled = false;
+        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -28,6 +35,11 @@ public class ChairTransaction : MonoBehaviour
                 // Check if the player collided from above (normal.y should be positive and close to 1)
                 if (contact.normal.y < - 0.9f)
                 {
+                    if (textInteraction != null)
+                    {
+  
+                        textInteraction.SetActive(true);
+                    }
                     StartCoroutine(FreezePlayerMovement(collision.gameObject));
                     break;
                 }
