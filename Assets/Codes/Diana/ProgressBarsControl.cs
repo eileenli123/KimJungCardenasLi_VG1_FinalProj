@@ -8,55 +8,66 @@ public class ProgressBarsControl : MonoBehaviour
 {
     public Slider HealthBar;
     public Slider GPABar;
-    public Slider MoneyBar;
     public Slider SocialBar;
 
+    public int coinCountText;  // Reference to the Text component for coin count display
+
     private float playerMoney;
+    private int coinCount;  // Variable to track the coin count
+
 
     void Start()
     {
 
         HealthBar.value = PlayerPrefs.GetFloat("Health", 0f);
         GPABar.value = PlayerPrefs.GetFloat("GPA", 0f);
-        MoneyBar.value = PlayerPrefs.GetFloat("Money", 0f);
         SocialBar.value = PlayerPrefs.GetFloat("Social", 0f);
+        playerMoney = PlayerPrefs.GetFloat("PlayerMoney", 0f);
+        coinCount = PlayerPrefs.GetInt("CoinCount", 0);
+
+        // Debug logs
         Debug.Log("Loaded Health: " + HealthBar.value);
         Debug.Log("Loaded GPA: " + GPABar.value);
-        Debug.Log("Loaded Money: " + MoneyBar.value);
-        Debug.Log("Loaded Social: " + SocialBar.value);
-
-        playerMoney = PlayerPrefs.GetFloat("PlayerMoney", 0f); // Load money as float
         Debug.Log("Loaded Player Money: " + playerMoney);
+        Debug.Log("Loaded Coin Count: " + coinCount);
 
+        UpdateCoinCountText();
+
+        // Set max values for sliders
         HealthBar.maxValue = 50f;
         GPABar.maxValue = 50f;
-        MoneyBar.maxValue = 50f;
         SocialBar.maxValue = 50f;
     }
-
-public bool DecreaseMoney(float amount)  
+    public void IncreaseCoins(int amount)
     {
-        if (playerMoney >= amount)
-        {
-            playerMoney -= amount; // Update player money
-            PlayerPrefs.SetFloat("PlayerMoney", playerMoney);  // Save the updated player money
-            PlayerPrefs.Save();
-            Debug.Log("Money decreased, current amount: " + playerMoney);
+        coinCount += amount;
+        PlayerPrefs.SetInt("CoinCount", coinCount);
+        PlayerPrefs.Save();
 
-            // Update the MoneyBar slider
-            MoneyBar.value = Mathf.Clamp(MoneyBar.value - amount, 0f, MoneyBar.maxValue);
-            PlayerPrefs.SetFloat("Money", MoneyBar.value);  // Save MoneyBar progress
-            PlayerPrefs.Save();
-
-            return true; // Transaction successful
-        }
-        else
-        {
-            Debug.Log("Not enough money!");
-            return false; // Not enough money
-        }
+        Debug.Log("Coins increased, current count: " + coinCount);
+        UpdateCoinCountText();
     }
-    public float GetMoney() 
+    public bool DecreaseCoins(int amount)
+    {
+        if (coinCount >= amount)
+        {
+            coinCount -= amount;
+            PlayerPrefs.SetInt("CoinCount", coinCount);
+            PlayerPrefs.Save();
+
+            Debug.Log("Coins decreased, current count: " + coinCount);
+            UpdateCoinCountText();
+            return true;
+        }
+        Debug.Log("Not enough coins to decrease");
+        return false;
+    }
+    // Update the coin count text display
+    public void UpdateCoinCountText()
+    {
+        coinCountText = coinCount;  // Display the coin count
+    }
+    public float GetMoney()
     {
         return playerMoney;
     }
@@ -76,7 +87,7 @@ public bool DecreaseMoney(float amount)
     public void IncreaseGPA(float value)
     {
         GPABar.value = Mathf.Clamp(GPABar.value + value, 0f, GPABar.maxValue);
-        PlayerPrefs.SetFloat("GPA", GPABar.value);  // Save progress
+        PlayerPrefs.SetFloat("GPA", GPABar.value);
         PlayerPrefs.Save();
 
         if (GPABar.value < 0f)
@@ -85,24 +96,7 @@ public bool DecreaseMoney(float amount)
         }
     }
 
-    public void IncreaseMoney(float amount)
-    {
-        playerMoney += amount; // Update player money
-        PlayerPrefs.SetFloat("PlayerMoney", playerMoney);  // Save the player money
-        PlayerPrefs.Save();
-        Debug.Log("Money increased, current amount: " + playerMoney);
 
-        // Update the MoneyBar slider
-        MoneyBar.value = Mathf.Clamp(MoneyBar.value + amount, 0f, MoneyBar.maxValue);
-        PlayerPrefs.SetFloat("Money", MoneyBar.value); 
-        PlayerPrefs.Save();
-
-
-        if (MoneyBar.value < 0f)
-        {
-            RestartGame();
-        }
-    }
 
     public void IncreaseSocial(float value)
     {

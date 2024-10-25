@@ -26,7 +26,7 @@ public class GemCollect : MonoBehaviour
                     progressBarControl.IncreaseGPA(increaseAmount);
                     break;
                 case GemType.Money:
-                    progressBarControl.IncreaseMoney(increaseAmount);
+                    progressBarControl.IncreaseCoins((int)increaseAmount);
                     break;
                 case GemType.Social:
                     progressBarControl.IncreaseSocial(increaseAmount);

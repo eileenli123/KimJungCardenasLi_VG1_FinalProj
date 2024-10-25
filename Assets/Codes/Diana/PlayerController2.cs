@@ -9,6 +9,7 @@ public class PlayerController2 : MonoBehaviour
     public int jumpsLeft;
     private ProgressBarsControl progressBarControl;  // Reference to the progress bar controller
     Animator animator;
+    SpriteRenderer sprite;
 
     private TutorialManager tutorialManager;
 
@@ -18,6 +19,7 @@ public class PlayerController2 : MonoBehaviour
         progressBarControl = FindObjectOfType<ProgressBarsControl>();
         animator = GetComponent<Animator>();
         tutorialManager = FindObjectOfType<TutorialManager>();
+        sprite = GetComponent<SpriteRenderer>();
 
 
     }
@@ -44,45 +46,80 @@ public class PlayerController2 : MonoBehaviour
     }
 
     // Update is called once per frame
+    float maxSpeed = 18f;
+    float acceleration = 5f;  // Adjust to control how quickly the player accelerates
+    bool isMovingLeft = false;
+    bool isMovingRight = false;
+
     void Update()
     {
+        _rigidbody2D.drag = 0f;
+
         // Check if the player is allowed to move
         if (tutorialManager != null && !tutorialManager.canPlayerMove)
         {
             return;  // Exit update if the player is not allowed to move yet
         }
-        // Move player left
+
+        // Handle left movement
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
-            _rigidbody2D.AddForce(Vector2.left * 15f * Time.deltaTime, ForceMode2D.Impulse);
+            isMovingLeft = true;
+            isMovingRight = false;
+            sprite.flipX = true;
+
+            // Apply force to the left if under max speed
+            if (_rigidbody2D.velocity.x > -maxSpeed)
+            {
+                _rigidbody2D.AddForce(Vector2.left * acceleration, ForceMode2D.Force);
+            }
         }
 
-        // Move player right
-        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+        // Handle right movement
+        else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
-            _rigidbody2D.AddForce(Vector2.right * 15f * Time.deltaTime, ForceMode2D.Impulse);
+            isMovingRight = true;
+            isMovingLeft = false;
+            sprite.flipX = false;
+
+            // Apply force to the right if under max speed
+            if (_rigidbody2D.velocity.x < maxSpeed)
+            {
+                _rigidbody2D.AddForce(Vector2.right * acceleration, ForceMode2D.Force);
+            }
         }
 
-        // Jump 
+        // Stop movement if neither key is pressed
+        if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.LeftArrow))
+        {
+            isMovingLeft = false;
+        }
+        if (Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.RightArrow))
+        {
+            isMovingRight = false;
+        }
+
+        // Jump logic
         if (Input.GetKeyDown(KeyCode.Space) && jumpsLeft > 0)
         {
-            _rigidbody2D.AddForce(Vector2.up * 13f, ForceMode2D.Impulse);
+            _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, 13f);  // Apply upward velocity
             jumpsLeft--;
         }
         animator.SetInteger("JumpsLeft", jumpsLeft);
 
-        // Limit the player's horizontal velocity (to avoid character from accelerating too fast)
-        if (Mathf.Abs(_rigidbody2D.velocity.x) > 18f)  // Set max horizontal speed
+        // Cap horizontal speed
+        if (Mathf.Abs(_rigidbody2D.velocity.x) > maxSpeed)
         {
-            _rigidbody2D.velocity = new Vector2(Mathf.Sign(_rigidbody2D.velocity.x) * 18f, _rigidbody2D.velocity.y);
+            _rigidbody2D.velocity = new Vector2(Mathf.Sign(_rigidbody2D.velocity.x) * maxSpeed, _rigidbody2D.velocity.y);
         }
 
-        // Limit the player's upward velocity
-        if (_rigidbody2D.velocity.y > 18f)  // Set max vertical speed
+        // Cap vertical speed
+        if (_rigidbody2D.velocity.y > 18f)
         {
             _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, 18f);
         }
     }
+
 
     // Handle collision with ground
     void OnCollisionEnter2D(Collision2D other)

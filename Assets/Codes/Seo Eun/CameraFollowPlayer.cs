@@ -5,14 +5,16 @@ using UnityEngine;
 public class CameraFollowPlayer : MonoBehaviour
 {
     public Transform player;
-    public float regularYOffset = 1f; 
-    public float dialogueYOffset = 3f; 
-    public float zOffset = -5f; 
+    public float regularYOffset = 1f;
+    public float dialogueYOffset = 3f;
+    public float zOffset = -5f;
     private bool isDialogueActive = false;
 
     // Update is called once per frame
     void Update()
     {
+
+
         if (isDialogueActive)
         {
             // Move the camera upward when dialogue is active
@@ -23,6 +25,7 @@ public class CameraFollowPlayer : MonoBehaviour
             // Follow the player normally
             transform.position = player.position + new Vector3(0, regularYOffset, zOffset);
         }
+
     }
 
     // Call this when dialogue starts
@@ -38,4 +41,6 @@ public class CameraFollowPlayer : MonoBehaviour
         isDialogueActive = false;
         Debug.Log("Camera moved back to normal follow position.");
     }
+
+
 }

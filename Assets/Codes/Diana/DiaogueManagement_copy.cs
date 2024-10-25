@@ -6,10 +6,8 @@ using TMPro;
 
 namespace Diana
 {
-
     public class DialogueManagement_copy : MonoBehaviour
     {
-
         public TextMeshProUGUI nameText;
         public TextMeshProUGUI dialogueText;
         public TextMeshProUGUI[] choiceTexts;
@@ -17,25 +15,22 @@ namespace Diana
         private Queue<string> sentences;
         private ProgressBarsControl progressBarControl;
 
-        // Use this for initialization
         void Start()
         {
             sentences = new Queue<string>();
-            progressBarControl = FindObjectOfType<ProgressBarsControl>(); 
+            progressBarControl = FindObjectOfType<ProgressBarsControl>();
         }
 
         public void StartDialogue(Dialogue_copy dialogue)
         {
             // Debugging to check for missing references
-        if (dialogue == null)
-        {
-            Debug.LogError("Dialogue_copy object is null!");
-            return;
-        }
+            if (dialogue == null)
+            {
+                Debug.LogError("Dialogue_copy object is null!");
+                return;
+            }
 
             Debug.Log("Starting dialogue with: " + dialogue.dialogueName);
-            nameText.text = dialogue.dialogueName;
-
             nameText.text = dialogue.dialogueName;
             currentDialogue = dialogue;
 
@@ -59,7 +54,6 @@ namespace Diana
 
             string sentence = sentences.Dequeue();
             dialogueText.text = sentence;
-
         }
 
         void DisplayChoices()
@@ -76,7 +70,7 @@ namespace Diana
             float choiceCost = currentDialogue.choices[choiceIndex].coinCost;
 
             // Check if player has enough money for the selected choice
-            if (progressBarControl.DecreaseMoney(choiceCost)) // Successfully deducted money
+            if (progressBarControl.DecreaseCoins((int)choiceCost)) // Successfully deducted money
             {
                 // Reward social gems
                 float gemReward = currentDialogue.choices[choiceIndex].socialGemReward;
@@ -88,10 +82,13 @@ namespace Diana
 
                 // Reward money gems
                 float moneyReward = currentDialogue.choices[choiceIndex].moneyGemReward;
-                progressBarControl.IncreaseMoney(moneyReward);
+                progressBarControl.IncreaseCoins((int)moneyReward);
 
                 // Show the friend's response
                 dialogueText.text = currentDialogue.choices[choiceIndex].friendResponse;
+
+                // Update the coin count display after making a choice
+                progressBarControl.UpdateCoinCountText();
 
                 EndDialogue(); // End the conversation after choice is made
             }
@@ -101,6 +98,7 @@ namespace Diana
                 dialogueText.text = "Not enough money!";
             }
         }
+
         void EndDialogue()
         {
             Debug.Log("End of Conversation");
