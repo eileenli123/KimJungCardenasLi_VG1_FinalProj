@@ -13,6 +13,7 @@ namespace Diana
         public TextMeshProUGUI nameText;
         public TextMeshProUGUI dialogueText;
         public TextMeshProUGUI[] choiceTexts;
+        public Button[] choiceButtons;
         public Dialogue_copy currentDialogue;
         private Queue<string> sentences;
         private ProgressBarsControl progressBarControl;
@@ -22,6 +23,12 @@ namespace Diana
         {
             sentences = new Queue<string>();
             progressBarControl = FindObjectOfType<ProgressBarsControl>(); 
+
+            for (int i = 0; i < choiceButtons.Length; i++)
+            {
+                int choiceIndex = i; 
+                choiceButtons[i].onClick.AddListener(() => SelectChoice(choiceIndex));
+            }
         }
 
         public void StartDialogue(Dialogue_copy dialogue)
@@ -85,6 +92,7 @@ namespace Diana
 
         public void SelectChoice(int choiceIndex)
         {
+            Debug.Log("Selected choice index: " + choiceIndex);
             float choiceCost = currentDialogue.choices[choiceIndex].coinCost;
 
             // Check if player has enough money for the selected choice
@@ -116,6 +124,11 @@ namespace Diana
         void EndDialogue()
         {
             Debug.Log("End of Conversation");
+
+            for (int i = 0; i < choiceButtons.Length; i++)
+            {
+                choiceButtons[i].gameObject.SetActive(false);
+            }
         }
     }
 }
