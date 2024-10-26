@@ -1,6 +1,4 @@
 using UnityEngine.SceneManagement;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,15 +8,13 @@ public class ProgressBarsControl : MonoBehaviour
     public Slider GPABar;
     public Slider SocialBar;
 
-    public int coinCountText;  // Reference to the Text component for coin count display
+    public Text coinCountText;  // Reference to the Text component for coin count display
 
     private float playerMoney;
     private int coinCount;  // Variable to track the coin count
 
-
     void Start()
     {
-
         HealthBar.value = PlayerPrefs.GetFloat("Health", 0f);
         GPABar.value = PlayerPrefs.GetFloat("GPA", 0f);
         SocialBar.value = PlayerPrefs.GetFloat("Social", 0f);
@@ -38,6 +34,7 @@ public class ProgressBarsControl : MonoBehaviour
         GPABar.maxValue = 50f;
         SocialBar.maxValue = 50f;
     }
+
     public void IncreaseCoins(int amount)
     {
         coinCount += amount;
@@ -47,6 +44,7 @@ public class ProgressBarsControl : MonoBehaviour
         Debug.Log("Coins increased, current count: " + coinCount);
         UpdateCoinCountText();
     }
+
     public bool DecreaseCoins(int amount)
     {
         if (coinCount >= amount)
@@ -62,11 +60,15 @@ public class ProgressBarsControl : MonoBehaviour
         Debug.Log("Not enough coins to decrease");
         return false;
     }
+
     // Update the coin count text display
     public void UpdateCoinCountText()
     {
-        coinCountText = coinCount;  // Display the coin count
+
+        coinCountText.text = "" + coinCount;  // Display the coin count
+
     }
+
     public float GetMoney()
     {
         return playerMoney;
@@ -78,7 +80,7 @@ public class ProgressBarsControl : MonoBehaviour
         PlayerPrefs.SetFloat("Health", HealthBar.value);  // Save progress
         PlayerPrefs.Save();
 
-        if (HealthBar.value < 0f)
+        if (HealthBar.value <= 0f)
         {
             RestartGame();
         }
@@ -90,13 +92,11 @@ public class ProgressBarsControl : MonoBehaviour
         PlayerPrefs.SetFloat("GPA", GPABar.value);
         PlayerPrefs.Save();
 
-        if (GPABar.value < 0f)
+        if (GPABar.value <= 0f)
         {
             RestartGame();
         }
     }
-
-
 
     public void IncreaseSocial(float value)
     {
@@ -104,12 +104,13 @@ public class ProgressBarsControl : MonoBehaviour
         PlayerPrefs.SetFloat("Social", SocialBar.value);  // Save progress
         PlayerPrefs.Save();
 
-        if (SocialBar.value < 0f)
+        if (SocialBar.value <= 0f)
         {
             Debug.Log("Social is 0");
             RestartGame();
         }
     }
+
     private void RestartGame()
     {
         Debug.Log("Restarting game");
@@ -117,12 +118,11 @@ public class ProgressBarsControl : MonoBehaviour
         // Clear all saved progress
         PlayerPrefs.DeleteKey("Health");
         PlayerPrefs.DeleteKey("GPA");
-        PlayerPrefs.DeleteKey("Money");
         PlayerPrefs.DeleteKey("PlayerMoney");
         PlayerPrefs.DeleteKey("Social");
+        PlayerPrefs.DeleteKey("CoinCount");  // Clear coin count
 
         // Reload the current scene, which will reset all bars to 0
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
-

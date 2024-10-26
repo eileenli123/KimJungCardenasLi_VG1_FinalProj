@@ -55,11 +55,6 @@ public class PlayerController2 : MonoBehaviour
     {
         _rigidbody2D.drag = 0f;
 
-        // Check if the player is allowed to move
-        if (tutorialManager != null && !tutorialManager.canPlayerMove)
-        {
-            return;  // Exit update if the player is not allowed to move yet
-        }
 
         // Handle left movement
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))

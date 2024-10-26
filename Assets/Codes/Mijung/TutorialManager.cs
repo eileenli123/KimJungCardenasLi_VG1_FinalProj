@@ -25,45 +25,95 @@ public class TutorialManager : MonoBehaviour
         // Check for player inputs and progress the tutorial
         if (popUpIndex == 0)
         {
-            cameraMovement.PauseCameraMovement();
+            cameraMovement.PauseCameraMovement(); // Pause the camera
 
-            canPlayerMove = true;  // Allow player to move
+            canPlayerMove = true;
 
-            // Start the coroutine to wait for 5 seconds and then progress
-            StartCoroutine(WaitAndProgress(5f));
-            if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
+            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
             {
                 popUpIndex++;
             }
         }
         else if (popUpIndex == 1)
         {
-            StartCoroutine(WaitAndProgress(3f));
-            cameraMovement.AllowCameraMovement();
+            cameraMovement.PauseCameraMovement();
 
-
-
+            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
+            {
+                popUpIndex++;
+            }
         }
         else if (popUpIndex == 2)
         {
-            cameraMovement.PauseCameraMovement();
-            StartCoroutine(WaitAndProgress(5f));
-            if (Input.GetKeyDown(KeyCode.Space))
+
+            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
             {
-                canPlayerMove = true;  // Allow the player to move after this step
-                popUpIndex++;  // Progress to the next tutorial pop-up
-                cameraMovement.AllowCameraMovement(); // Indicate to the camera that it can move again
+                cameraMovement.AllowCameraMovement();
+                StartCoroutine(WaitAndAdvance(5f));
 
             }
+        }
+        else if (popUpIndex == 3)
+        {
+            cameraMovement.PauseCameraMovement();
+            canPlayerMove = true;
 
+            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
+            {
+                popUpIndex++;
+            }
+        }
+        else if (popUpIndex == 4)
+        {
+            cameraMovement.PauseCameraMovement();
+
+            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
+            {
+                popUpIndex++;
+            }
+        }
+        else if (popUpIndex == 5)
+        {
+            cameraMovement.PauseCameraMovement();
+
+            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
+            {
+                popUpIndex++;
+            }
+        }
+        else if (popUpIndex == 6)
+        {
+            cameraMovement.PauseCameraMovement();
+
+            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
+            {
+                popUpIndex++;
+            }
+        }
+        else if (popUpIndex == 7)
+        {
+            canPlayerMove = true;
+
+            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
+            {
+                popUpIndex++;
+            }
+        }
+        else if (popUpIndex == 8)
+        {
+            canPlayerMove = true;
+
+            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
+            {
+                cameraMovement.AllowCameraMovement();
+            }
         }
     }
-
-    private IEnumerator WaitAndProgress(float waitTime)
+    private IEnumerator WaitAndAdvance(float waitTime)
     {
-
-        // Wait for the specified time while allowing player movement
-        yield return new WaitForSeconds(waitTime);
-
+        canPlayerMove = true; // Allow player movement
+        yield return new WaitForSeconds(waitTime); // Wait for the specified time
+        popUpIndex++; // Advance to the next pop-up
     }
+
 }

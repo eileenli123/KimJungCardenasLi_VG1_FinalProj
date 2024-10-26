@@ -19022,7 +19022,7 @@ MonoBehaviour:
   HealthBar: {fileID: 0}
   GPABar: {fileID: 1641163210}
   SocialBar: {fileID: 982533845}
-  coinCountText: 0
+  coinCountText: {fileID: 1257465532}
 --- !u!114 &1707661623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19786,7 +19786,7 @@ MonoBehaviour:
   HealthBar: {fileID: 2062384444}
   GPABar: {fileID: 1908379124}
   SocialBar: {fileID: 943739431}
-  coinCountText: 0
+  coinCountText: {fileID: 0}
 --- !u!114 &1888164602
 MonoBehaviour:
   m_ObjectHideFlags: 0
