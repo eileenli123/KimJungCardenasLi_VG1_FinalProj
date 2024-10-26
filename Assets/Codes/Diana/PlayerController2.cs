@@ -18,7 +18,6 @@ public class PlayerController2 : MonoBehaviour
         // Find the ProgressBarsControl script in the scene
         progressBarControl = FindObjectOfType<ProgressBarsControl>();
         animator = GetComponent<Animator>();
-        tutorialManager = FindObjectOfType<TutorialManager>();
         sprite = GetComponent<SpriteRenderer>();
 
 

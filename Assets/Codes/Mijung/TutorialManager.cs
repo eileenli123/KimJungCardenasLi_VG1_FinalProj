@@ -6,7 +6,7 @@ public class TutorialManager : MonoBehaviour
 {
     public GameObject[] popUps;
     private int popUpIndex;
-    public bool canPlayerMove = false;
+    public bool canPlayerMove = true;
     public CameraMovement cameraMovement; // Reference to CameraMovement script
 
     void Start()
