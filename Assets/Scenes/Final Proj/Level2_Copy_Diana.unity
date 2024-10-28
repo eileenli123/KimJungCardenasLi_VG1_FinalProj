@@ -6401,6 +6401,10 @@ MonoBehaviour:
   - {fileID: 719211284}
   - {fileID: 1725832483}
   - {fileID: 1098084793}
+  choiceButtons:
+  - {fileID: 509593266}
+  - {fileID: 543589612}
+  - {fileID: 1651105990}
 --- !u!212 &715669383
 SpriteRenderer:
   m_ObjectHideFlags: 0
