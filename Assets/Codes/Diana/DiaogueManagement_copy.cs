@@ -23,7 +23,6 @@ namespace Diana
 
         public void StartDialogue(Dialogue_copy dialogue)
         {
-            // Debugging to check for missing references
             if (dialogue == null)
             {
                 Debug.LogError("Dialogue_copy object is null!");
@@ -34,36 +33,66 @@ namespace Diana
             nameText.text = dialogue.dialogueName;
             currentDialogue = dialogue;
 
-            sentences.Clear();
+            if (sentences == null)
+            {
+                sentences = new Queue<string>();
+            }
+
+            sentences.Clear();  // Ensure old sentences are cleared
+            Debug.Log("Sentences queue cleared.");
 
             foreach (string sentence in dialogue.sentences)
             {
                 sentences.Enqueue(sentence);
+                Debug.Log("Enqueued sentence: " + sentence);  // Make sure each sentence is added to the queue
             }
 
             DisplayNextSentence();
         }
 
-        public void DisplayNextSentence()
-        {
-            if (sentences.Count == 0)
-            {
-                DisplayChoices();
-                return;
-            }
+    public void DisplayNextSentence()
+    {
+        // Check the current count of sentences in the queue
+        Debug.Log("Sentences left: " + sentences.Count);
 
-            string sentence = sentences.Dequeue();
-            dialogueText.text = sentence;
+        // Dequeue a sentence if there are any left
+        string sentence = sentences.Dequeue();
+        Debug.Log("Displayed sentence: " + sentence);
+        
+        dialogueText.text = sentence;
+
+        // Log the updated count after dequeuing
+        Debug.Log("Sentences after dequeue: " + sentences.Count);
+        
+        // Now, check if sentences.Count has reached zero AFTER displaying the sentence
+        if (sentences.Count == 0)
+        {
+            Debug.Log("No more sentences left, now calling DisplayChoices...");
+            DisplayChoices(); // Ensure DisplayChoices gets called when no more sentences remain
         }
+    }
 
         void DisplayChoices()
         {
+            Debug.Log("Displaying choices...");
+
+            if (currentDialogue.choices == null || currentDialogue.choices.Length == 0)
+            {
+                Debug.LogError("No choices available in currentDialogue!");
+                return;
+            }
+
+            // Ensure the choices are visible
             for (int i = 0; i < currentDialogue.choices.Length; i++)
             {
-                choiceTexts[i].text = currentDialogue.choices[i].playerDialogue +
-                                      " (Cost: " + currentDialogue.choices[i].coinCost + " coins)";
+                Transform choiceParent = choiceTexts[i].transform.parent;
+                choiceTexts[i].transform.parent.gameObject.SetActive(true); // Ensure the parent holding the text is active
+                choiceTexts[i].text = currentDialogue.choices[i].playerDialogue + 
+                                    " (Cost: " + currentDialogue.choices[i].coinCost + " coins)";
+                Debug.Log("Displaying choice: " + currentDialogue.choices[i].playerDialogue); // Log the choice being displayed
             }
         }
+
 
         public void SelectChoice(int choiceIndex)
         {

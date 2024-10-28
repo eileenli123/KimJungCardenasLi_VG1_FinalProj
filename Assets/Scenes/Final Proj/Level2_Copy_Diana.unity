@@ -10158,21 +10158,18 @@ MonoBehaviour:
     coinCost: 3
     socialGemReward: 3
     academicGemReward: 0
-    heathGemReward: 0
     moneyGemReward: 0
     friendResponse: Yay! Come to my dorm before to get ready!
   - playerDialogue: I'll be late, I have homework.
     coinCost: 2
     socialGemReward: 1
     academicGemReward: 1
-    heathGemReward: 0
     moneyGemReward: 0
     friendResponse: Aw okay. See you there!
   - playerDialogue: Parties aren't my thing. Sorry.
     coinCost: 0
     socialGemReward: 0
     academicGemReward: 0
-    heathGemReward: 0
     moneyGemReward: 0
     friendResponse: Oh okay. See you around maybe.
 --- !u!4 &1507962851
@@ -10941,8 +10938,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HealthBar: {fileID: 2062384444}
   GPABar: {fileID: 1641163210}
-  MoneyBar: {fileID: 823089244}
   SocialBar: {fileID: 982533845}
+  coinCountText: {fileID: 0}
 --- !u!114 &1707661623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11445,7 +11442,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1830578434}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 767f2d8318348474197dc9b6dbe1c983, type: 3}
   m_Name: 
@@ -11683,8 +11680,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HealthBar: {fileID: 2062384444}
   GPABar: {fileID: 1908379124}
-  MoneyBar: {fileID: 82431368}
   SocialBar: {fileID: 943739431}
+  coinCountText: {fileID: 0}
 --- !u!114 &1888164602
 MonoBehaviour:
   m_ObjectHideFlags: 0

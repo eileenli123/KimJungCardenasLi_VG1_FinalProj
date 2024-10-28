@@ -10,6 +10,7 @@ public class DialogueChoice
     public int coinCost;   
     public int socialGemReward; 
     public float academicGemReward;
+    public float healthGemReward;
     public float moneyGemReward; 
     public string friendResponse; 
 }
