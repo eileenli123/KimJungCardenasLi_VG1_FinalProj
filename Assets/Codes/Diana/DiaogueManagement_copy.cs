@@ -91,6 +91,7 @@ namespace Diana
             {
                 Transform choiceParent = choiceTexts[i].transform.parent;
                 choiceTexts[i].transform.parent.gameObject.SetActive(true); // Ensure the parent holding the text is active
+                choiceButtons[i].gameObject.SetActive(true);
                 choiceTexts[i].text = currentDialogue.choices[i].playerDialogue + 
                                     " (Cost: " + currentDialogue.choices[i].coinCost + " coins)";
                 Debug.Log("Displaying choice: " + currentDialogue.choices[i].playerDialogue); // Log the choice being displayed
@@ -101,13 +102,13 @@ namespace Diana
         public void SelectChoice(int choiceIndex)
         {
             Debug.Log("Button clicked: " + choiceIndex);
-            float choiceCost = currentDialogue.choices[choiceIndex].coinCost;
+            int choiceCost = currentDialogue.choices[choiceIndex].coinCost;
 
             // Check if player has enough money for the selected choice
-            if (progressBarControl.DecreaseCoins((int)choiceCost)) // Successfully deducted money
+            if (progressBarControl.DecreaseCoins(choiceCost)) // Successfully deducted money
             {
-                float gemReward = currentDialogue.choices[choiceIndex].socialGemReward;
-                progressBarControl.IncreaseSocial(gemReward);
+                float socialReward = currentDialogue.choices[choiceIndex].socialGemReward;
+                progressBarControl.IncreaseSocial(socialReward);
 
                 float academicReward = currentDialogue.choices[choiceIndex].academicGemReward;
                 progressBarControl.IncreaseGPA(academicReward);
@@ -120,7 +121,7 @@ namespace Diana
                 // Update the coin count display after making a choice
                 progressBarControl.UpdateCoinCountText();
 
-                EndDialogue(); // End the conversation after choice is made
+                EndDialogue(); 
             }
             else
             {
@@ -132,6 +133,10 @@ namespace Diana
         void EndDialogue()
         {
             Debug.Log("End of Conversation");
+            foreach (Button button in choiceButtons)
+            {
+                button.gameObject.SetActive(false);
+            }
         }
     }
 }
