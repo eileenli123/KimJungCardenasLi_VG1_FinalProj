@@ -11,6 +11,7 @@ namespace Diana
         public TextMeshProUGUI nameText;
         public TextMeshProUGUI dialogueText;
         public TextMeshProUGUI[] choiceTexts;
+        public Button[] choiceButtons;
         private Dialogue_copy currentDialogue;
         private Queue<string> sentences;
         private ProgressBarsControl progressBarControl;
@@ -19,6 +20,11 @@ namespace Diana
         {
             sentences = new Queue<string>();
             progressBarControl = FindObjectOfType<ProgressBarsControl>();
+            for (int i = 0; i < choiceButtons.Length; i++)
+            {
+                int choiceIndex = i; 
+                choiceButtons[i].onClick.AddListener(() => SelectChoice(choiceIndex));
+            }
         }
 
         public void StartDialogue(Dialogue_copy dialogue)
@@ -52,7 +58,6 @@ namespace Diana
 
     public void DisplayNextSentence()
     {
-        // Check the current count of sentences in the queue
         Debug.Log("Sentences left: " + sentences.Count);
 
         // Dequeue a sentence if there are any left
@@ -64,7 +69,6 @@ namespace Diana
         // Log the updated count after dequeuing
         Debug.Log("Sentences after dequeue: " + sentences.Count);
         
-        // Now, check if sentences.Count has reached zero AFTER displaying the sentence
         if (sentences.Count == 0)
         {
             Debug.Log("No more sentences left, now calling DisplayChoices...");
@@ -96,24 +100,21 @@ namespace Diana
 
         public void SelectChoice(int choiceIndex)
         {
+            Debug.Log("Button clicked: " + choiceIndex);
             float choiceCost = currentDialogue.choices[choiceIndex].coinCost;
 
             // Check if player has enough money for the selected choice
             if (progressBarControl.DecreaseCoins((int)choiceCost)) // Successfully deducted money
             {
-                // Reward social gems
                 float gemReward = currentDialogue.choices[choiceIndex].socialGemReward;
                 progressBarControl.IncreaseSocial(gemReward);
 
-                // Reward academic gems 
                 float academicReward = currentDialogue.choices[choiceIndex].academicGemReward;
                 progressBarControl.IncreaseGPA(academicReward);
 
-                // Reward money gems
                 float moneyReward = currentDialogue.choices[choiceIndex].moneyGemReward;
                 progressBarControl.IncreaseCoins((int)moneyReward);
 
-                // Show the friend's response
                 dialogueText.text = currentDialogue.choices[choiceIndex].friendResponse;
 
                 // Update the coin count display after making a choice
