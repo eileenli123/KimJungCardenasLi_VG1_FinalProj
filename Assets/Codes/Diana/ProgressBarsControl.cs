@@ -15,14 +15,14 @@ public class ProgressBarsControl : MonoBehaviour
 
     void Start()
     {
-        HealthBar.value = PlayerPrefs.GetFloat("Health", 0f);
+        // HealthBar.value = PlayerPrefs.GetFloat("Health", 0f); // null reference
         GPABar.value = PlayerPrefs.GetFloat("GPA", 0f);
         SocialBar.value = PlayerPrefs.GetFloat("Social", 0f);
         playerMoney = PlayerPrefs.GetFloat("PlayerMoney", 0f);
         coinCount = PlayerPrefs.GetInt("CoinCount", 0);
 
         // Debug logs
-        Debug.Log("Loaded Health: " + HealthBar.value);
+        //Debug.Log("Loaded Health: " + HealthBar.value); //null reference
         Debug.Log("Loaded GPA: " + GPABar.value);
         Debug.Log("Loaded Player Money: " + playerMoney);
         Debug.Log("Loaded Coin Count: " + coinCount);
@@ -80,7 +80,7 @@ public class ProgressBarsControl : MonoBehaviour
         PlayerPrefs.SetFloat("Health", HealthBar.value);  // Save progress
         PlayerPrefs.Save();
 
-        if (HealthBar.value <= 0f)
+        if (HealthBar.value < 0f)
         {
             RestartGame();
         }
@@ -92,7 +92,7 @@ public class ProgressBarsControl : MonoBehaviour
         PlayerPrefs.SetFloat("GPA", GPABar.value);
         PlayerPrefs.Save();
 
-        if (GPABar.value <= 0f)
+        if (GPABar.value < 0f)
         {
             RestartGame();
         }
@@ -104,7 +104,7 @@ public class ProgressBarsControl : MonoBehaviour
         PlayerPrefs.SetFloat("Social", SocialBar.value);  // Save progress
         PlayerPrefs.Save();
 
-        if (SocialBar.value <= 0f)
+        if (SocialBar.value < 0f)
         {
             Debug.Log("Social is 0");
             RestartGame();

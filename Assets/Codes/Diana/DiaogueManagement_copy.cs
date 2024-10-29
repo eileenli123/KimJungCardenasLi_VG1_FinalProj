@@ -24,7 +24,9 @@ namespace Diana
             {
                 int choiceIndex = i; 
                 choiceButtons[i].onClick.AddListener(() => SelectChoice(choiceIndex));
-            }
+                Debug.Log("Parent Position: " + choiceButtons[i].transform.parent.position);
+                Debug.Log("Button Position: " + choiceButtons[i].GetComponent<RectTransform>().anchoredPosition);
+                    }
         }
 
         public void StartDialogue(Dialogue_copy dialogue)
