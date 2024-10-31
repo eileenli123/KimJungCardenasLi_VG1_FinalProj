@@ -25,7 +25,7 @@ public class PlayerMoveToSlow : MonoBehaviour
     {
         if (progressBarsControl != null)
         {
-            progressBarsControl.RestartGame();  // Call RestartGame to reset all progress
+            progressBarsControl.RestartGame();  // Call RestartGame to reset all stats
         }
         SceneManager.LoadSceneAsync("Lose");
 

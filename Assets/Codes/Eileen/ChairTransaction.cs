@@ -8,9 +8,10 @@ public class ChairTransaction : MonoBehaviour
 {
     private bool hasActivatedOnce = false;  // To track if the effect has already been applied
     public float freezeDuration = 3f;  // Time the player will be frozen
-    public TextMeshPro textMeshPro;  // Reference to the TextMeshPro component in the Counter object
+    public TextMeshPro textMeshPro; 
     public GameObject GPA_gem_prefab;
-    public GameObject textInteraction; 
+    public GameObject textInteraction; //any other objects that should generate when player sits on seat
+
 
     private void Start()
     {
@@ -37,7 +38,6 @@ public class ChairTransaction : MonoBehaviour
                 {
                     if (textInteraction != null)
                     {
-  
                         textInteraction.SetActive(true);
                     }
                     StartCoroutine(FreezePlayerMovement(collision.gameObject));
