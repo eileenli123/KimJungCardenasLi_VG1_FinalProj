@@ -7,6 +7,7 @@ public class PlayerMoveToSlow : MonoBehaviour
 {
     public Camera cameraTransform;
     public float loseOffset = 0.1f; // Offset for the left edge, default is slightly inside the view
+    public ProgressBarsControl progressBarsControl; 
 
     void Update()
     {
@@ -22,6 +23,10 @@ public class PlayerMoveToSlow : MonoBehaviour
 
     void RestartLevel()
     {
+        if (progressBarsControl != null)
+        {
+            progressBarsControl.RestartGame();  // Call RestartGame to reset all progress
+        }
         SceneManager.LoadSceneAsync("Lose");
 
     }

@@ -9,30 +9,38 @@ public class ProgressBarsControl : MonoBehaviour
     public Slider SocialBar;
 
     public Text coinCountText;  // Reference to the Text component for coin count display
+    public Text GPAScoreText; 
+
+    public Text GPAGemText;
+    public Text socialGemText;
 
     private float playerMoney;
     private int coinCount;  // Variable to track the coin count
+    private float GPAScore;
+    private float numGrades; 
+
 
     void Start()
     {
-        // HealthBar.value = PlayerPrefs.GetFloat("Health", 0f); // null reference
         GPABar.value = PlayerPrefs.GetFloat("GPA", 0f);
         SocialBar.value = PlayerPrefs.GetFloat("Social", 0f);
         playerMoney = PlayerPrefs.GetFloat("PlayerMoney", 0f);
         coinCount = PlayerPrefs.GetInt("CoinCount", 0);
+        GPAScore = PlayerPrefs.GetFloat("GPAScore", 4.0f);
+        numGrades = PlayerPrefs.GetFloat("numGrades", 1f); 
 
-        // Debug logs
-        //Debug.Log("Loaded Health: " + HealthBar.value); //null reference
-        Debug.Log("Loaded GPA: " + GPABar.value);
-        Debug.Log("Loaded Player Money: " + playerMoney);
-        Debug.Log("Loaded Coin Count: " + coinCount);
 
         UpdateCoinCountText();
+        GPAGemText.text = "GPA: " + GPABar.value;
+        socialGemText.text = "Social Status: " + SocialBar.value;
+        GPAScoreText.text = "GPA: " + GPAScore.ToString("F1");
+        Debug.Log(GPAScore); 
 
         // Set max values for sliders
         HealthBar.maxValue = 50f;
         GPABar.maxValue = 50f;
         SocialBar.maxValue = 50f;
+
     }
 
     public void IncreaseCoins(int amount)
@@ -64,9 +72,7 @@ public class ProgressBarsControl : MonoBehaviour
     // Update the coin count text display
     public void UpdateCoinCountText()
     {
-
         coinCountText.text = "" + coinCount;  // Display the coin count
-
     }
 
     public float GetMoney()
@@ -91,6 +97,7 @@ public class ProgressBarsControl : MonoBehaviour
         GPABar.value = Mathf.Clamp(GPABar.value + value, 0f, GPABar.maxValue);
         PlayerPrefs.SetFloat("GPA", GPABar.value);
         PlayerPrefs.Save();
+        GPAGemText.text = "GPA: " + GPABar.value; 
 
         if (GPABar.value < 0f)
         {
@@ -98,11 +105,38 @@ public class ProgressBarsControl : MonoBehaviour
         }
     }
 
+
+    public void decreaseGPA(float value)
+    {
+        GPABar.value = Mathf.Clamp(GPABar.value - value, 0f, GPABar.maxValue);
+        PlayerPrefs.SetFloat("GPA", GPABar.value);
+        PlayerPrefs.Save();
+        GPAGemText.text = "GPA: " + GPABar.value;
+
+        if (GPABar.value < 0f)
+        {
+            RestartGame();
+        }
+    }
+
+    public void enterGrade(float grade)
+    {   //A = 4, B=3, C=2, D=1
+        GPAScore = ((GPAScore * numGrades) + grade) / (numGrades + 1); 
+        PlayerPrefs.SetFloat("numGrades", numGrades + 1);
+        numGrades += 1;
+        PlayerPrefs.SetFloat("GPAScore", GPAScore);
+        PlayerPrefs.Save();
+        GPAScoreText.text = "GPA: " + GPAScore.ToString("F1");
+
+    }
+
+
     public void IncreaseSocial(float value)
     {
         SocialBar.value = Mathf.Clamp(SocialBar.value + value, 0f, SocialBar.maxValue);
         PlayerPrefs.SetFloat("Social", SocialBar.value);  // Save progress
         PlayerPrefs.Save();
+        socialGemText.text = "Social Status: " + SocialBar.value; 
 
         if (SocialBar.value < 0f)
         {
@@ -111,18 +145,23 @@ public class ProgressBarsControl : MonoBehaviour
         }
     }
 
-    private void RestartGame()
+    public void RestartGame()
     {
         Debug.Log("Restarting game");
 
         // Clear all saved progress
-        PlayerPrefs.DeleteKey("Health");
+        //PlayerPrefs.DeleteKey("Health");
+        // PlayerPrefs.DeleteKey("PlayerMoney");
         PlayerPrefs.DeleteKey("GPA");
-        PlayerPrefs.DeleteKey("PlayerMoney");
         PlayerPrefs.DeleteKey("Social");
-        PlayerPrefs.DeleteKey("CoinCount");  // Clear coin count
+        PlayerPrefs.DeleteKey("CoinCount"); 
+        PlayerPrefs.DeleteKey("GPAScore");
+        PlayerPrefs.DeleteKey("numGrades");
+
 
         // Reload the current scene, which will reset all bars to 0
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().name); // handle which level load depending on reason why they lost
     }
+
+
 }

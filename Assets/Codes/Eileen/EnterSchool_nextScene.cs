@@ -5,17 +5,34 @@ using UnityEngine.SceneManagement;
 
 public class EnterSchool_nextScene : MonoBehaviour
 {
-    void OnCollisionEnter2D(Collision2D other)
-    {
+    public ProgressBarsControl progressBarsControl; 
 
+    private void OnCollisionEnter2D(Collision2D other)
+    {
         if (other.gameObject.GetComponent<PlayerController2>())
         {
-            print(other.gameObject.name);
+            string sceneName = SceneManager.GetActiveScene().name;
 
-            SceneManager.LoadScene("Level1");
+            
+            if (sceneName == "Level1")
+            {
+                float currentGPA = PlayerPrefs.GetFloat("GPAScore", 0f); 
 
-            //string sceneName = SceneManager.GetActiveScene().name;
-            //SceneManager.LoadScene(sceneName);
+                if (currentGPA >= 2.0f)
+                { //passed the level
+                    SceneManager.LoadScene("Level1");
+                }
+                else
+                {
+                    progressBarsControl.RestartGame(); //reset all stats 
+                    SceneManager.LoadScene("Lose");
+                }
+            }
+            else
+            {
+                SceneManager.LoadScene("Level1"); //TODO: chnage this -- made default to level 1 so tutorial level loads level 1 
+                //add logic for other levels when made 
+            }
         }
     }
 }
