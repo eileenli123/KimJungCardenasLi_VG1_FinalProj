@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
-    public float cameraSpeed; // Speed of the camera movement
+    public float cameraSpeed = 2f; // Speed of the camera movement
     private TutorialManager tutorialManager;
     private bool isDialogueActive = false;
-    private bool pauseCamera = false; // Variable to control camera freezing
+    private bool pauseCamera = true; // Variable to control camera freezing
 
     void Start()
     {
@@ -17,7 +17,11 @@ public class CameraMovement : MonoBehaviour
     void Update()
     {
         // Stop camera movement if dialogue is active
-        if (isDialogueActive || pauseCamera)
+        if (pauseCamera == true)
+        {
+            transform.Translate(Vector3.right * 0 * Time.deltaTime);
+        }
+        if (isDialogueActive)
         {
             transform.Translate(Vector3.right * 0 * Time.deltaTime);
         }

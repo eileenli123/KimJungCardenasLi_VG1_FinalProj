@@ -15,7 +15,9 @@ public class TutorialManager : MonoBehaviour
     }
 
     void Update()
+
     {
+        cameraMovement.PauseCameraMovement();
         // Ensure only the pop-up at popUpIndex is active
         for (int i = 0; i < popUps.Length; i++)
         {
