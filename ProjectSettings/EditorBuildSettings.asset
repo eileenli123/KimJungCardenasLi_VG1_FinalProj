@@ -5,13 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Final Proj/StartMenu.unity
     guid: 8af8fc2d93ee7484d99c6e3e93147b78
   - enabled: 0
     path: Assets/Scenes/Final Proj/LoseScreen.unity
     guid: 28853d95a14da494ebdedf5d5084f152
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Final Proj/WinScreen.unity
     guid: e766df7a13999455cb66c94c69f21e6f
   - enabled: 0
@@ -20,7 +20,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Final Proj/Level 1.unity
     guid: 39fc75a763de241318f80d2df4f335e6
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Final Proj/Tutorial.unity
     guid: a4e712c862dde4847b15f8af7350d2d4
   - enabled: 0
@@ -29,10 +29,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Final Proj/Level1.unity
     guid: 77d40922da3a1452c8122cca891488de
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Final Proj/Lose.unity
     guid: 72b10ebe7333a4418aeb06f832648003
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Final Proj/Example Slides.unity
     guid: 238700fbff3d7490c86cc263d8a70cab
   - enabled: 1

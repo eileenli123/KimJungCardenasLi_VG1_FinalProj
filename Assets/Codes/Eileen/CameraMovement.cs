@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
-    public float cameraSpeed = 2f; // Speed of the camera movement
+    public float cameraSpeed; // Speed of the camera movement
     private TutorialManager tutorialManager;
     private bool isDialogueActive = false;
     private bool pauseCamera = true; // Variable to control camera freezing
@@ -21,19 +21,23 @@ public class CameraMovement : MonoBehaviour
         {
             transform.Translate(Vector3.right * 0 * Time.deltaTime);
         }
-        if (isDialogueActive)
+        else if (isDialogueActive)
         {
             transform.Translate(Vector3.right * 0 * Time.deltaTime);
         }
 
         // Check if the player is allowed to move
-        if (tutorialManager != null && !tutorialManager.canPlayerMove)
+        else if (tutorialManager != null && !tutorialManager.canPlayerMove)
         {
             return; // Exit if the player is not allowed to move yet
         }
 
-        // Move the camera when the player is allowed to move
-        transform.Translate(Vector3.right * cameraSpeed * Time.deltaTime);
+        else if (!pauseCamera || !isDialogueActive)
+        {
+            transform.Translate(Vector3.right * cameraSpeed * Time.deltaTime);
+
+        }
+
     }
 
     public void StartDialogue()
