@@ -74,7 +74,7 @@ namespace Diana
         if (sentences.Count == 0)
         {
             Debug.Log("No more sentences left, now calling DisplayChoices...");
-            DisplayChoices(); // Ensure DisplayChoices gets called when no more sentences remain
+            DisplayChoices();
         }
     }
 
