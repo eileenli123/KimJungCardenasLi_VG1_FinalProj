@@ -9,11 +9,11 @@ namespace Diana
 public class FriendInteraction : MonoBehaviour
 {
     public CameraFollowPlayer cameraFollowPlayer; // Camera control for dialogue
-    public GameObject dialogueUI; // Reference to dialogue UI
-    public TextMeshProUGUI dialogueText; // Reference to dialogue text
-    public TextMeshProUGUI nameText; // Reference to name text
+    public GameObject dialogueUI;
+    public TextMeshProUGUI dialogueText; 
+    public TextMeshProUGUI nameText; 
     public TextMeshProUGUI[] choiceTexts; // Array of choices
-    public DialogueManagement_copy dialogueManager; // Reference to dialogue manager
+    public DialogueManagement_copy dialogueManager; 
     public Dialogue_copy dialogueData; // Dialogue data
 
     private PlayerController2 playerMovement; // Reference to player movement
@@ -42,10 +42,8 @@ public class FriendInteraction : MonoBehaviour
         {
             isDialogueActive = true; // Set the dialogue as active
 
-            // Show the dialogue UI
             dialogueUI.SetActive(true);
 
-            // Start the dialogue
             dialogueManager.StartDialogue(dialogueData); 
 
             // Shift the camera upward for the dialogue
