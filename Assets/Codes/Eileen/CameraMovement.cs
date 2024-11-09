@@ -26,17 +26,13 @@ public class CameraMovement : MonoBehaviour
             transform.Translate(Vector3.right * 0 * Time.deltaTime);
         }
 
-        // Check if the player is allowed to move
-        else if (tutorialManager != null && !tutorialManager.canPlayerMove)
-        {
-            return; // Exit if the player is not allowed to move yet
-        }
 
-        else if (!pauseCamera || !isDialogueActive)
+        else if (pauseCamera == false || !isDialogueActive)
         {
             transform.Translate(Vector3.right * cameraSpeed * Time.deltaTime);
-
         }
+
+
 
     }
 
@@ -59,6 +55,6 @@ public class CameraMovement : MonoBehaviour
     // Method to allow camera movement
     public void AllowCameraMovement()
     {
-        pauseCamera = false; // Reset the flag to allow camera movement
+        transform.Translate(Vector3.right * cameraSpeed * Time.deltaTime);// Reset the flag to allow camera movement
     }
 }
