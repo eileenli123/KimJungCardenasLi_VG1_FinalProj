@@ -19,9 +19,7 @@ public class GemCollect : MonoBehaviour
         {
             switch (gemType)
             {
-                case GemType.Health:
-                    progressBarControl.IncreaseHealth(increaseAmount);
-                    break;
+
                 case GemType.GPA:
                     progressBarControl.IncreaseGPA(increaseAmount);
                     break;

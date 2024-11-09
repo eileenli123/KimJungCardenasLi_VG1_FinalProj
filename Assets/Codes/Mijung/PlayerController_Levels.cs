@@ -9,6 +9,8 @@ public class PlayerController_Levels : MonoBehaviour
     public int jumpsLeft;
     private ProgressBarsControl progressBarControl;  // Reference to the progress bar controller
     Animator animator;
+    SpriteRenderer sprite;
+
 
 
     void Start()
@@ -47,12 +49,16 @@ public class PlayerController_Levels : MonoBehaviour
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
             _rigidbody2D.AddForce(Vector2.left * 15f * Time.deltaTime, ForceMode2D.Impulse);
+            sprite.flipX = true;
+
         }
 
         // Move player right
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
             _rigidbody2D.AddForce(Vector2.right * 15f * Time.deltaTime, ForceMode2D.Impulse);
+            sprite.flipX = false;
+
         }
 
         // Jump 

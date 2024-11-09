@@ -16,29 +16,17 @@ public class CameraMovement : MonoBehaviour
 
     void Update()
     {
-        // Stop camera movement if dialogue is active
-        if (pauseCamera == true)
-        {
-            transform.Translate(Vector3.right * 0 * Time.deltaTime);
-        }
-        else if (isDialogueActive)
-        {
-            transform.Translate(Vector3.right * 0 * Time.deltaTime);
-        }
-
-
-        else if (pauseCamera == false || !isDialogueActive)
+        // Move the camera only if it's not paused and there's no active dialogue
+        if (!pauseCamera && !isDialogueActive)
         {
             transform.Translate(Vector3.right * cameraSpeed * Time.deltaTime);
         }
-
-
-
     }
 
     public void StartDialogue()
     {
         isDialogueActive = true;
+        pauseCamera = true;  // Optionally, pause the camera when dialogue starts
     }
 
     public void EndDialogue()
@@ -55,6 +43,6 @@ public class CameraMovement : MonoBehaviour
     // Method to allow camera movement
     public void AllowCameraMovement()
     {
-        transform.Translate(Vector3.right * cameraSpeed * Time.deltaTime);// Reset the flag to allow camera movement
+        pauseCamera = false; // Reset the flag to allow camera movement
     }
 }

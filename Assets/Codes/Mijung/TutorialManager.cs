@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,10 +7,8 @@ public class TutorialManager : MonoBehaviour
 {
     public GameObject[] popUps;
     private int popUpIndex;
-    public bool canPlayerMove = true;
     public CameraMovement cameraMovement; // Reference to CameraMovement script
 
-    private bool playerNearGem = false;
 
     void Start()
     {
@@ -17,116 +16,64 @@ public class TutorialManager : MonoBehaviour
     }
 
     void Update()
-
     {
-        cameraMovement.PauseCameraMovement();
         // Ensure only the pop-up at popUpIndex is active
         for (int i = 0; i < popUps.Length; i++)
         {
             popUps[i].SetActive(i == popUpIndex);
         }
 
-        // Check for player inputs and progress the tutorial
-        if (popUpIndex == 0)
+        switch (popUpIndex)
         {
-            cameraMovement.PauseCameraMovement(); // Pause the camera
-
-
-            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
-            {
-                popUpIndex++;
-            }
-        }
-        else if (popUpIndex == 1)
-        {
-            cameraMovement.PauseCameraMovement();
-
-            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
-            {
-                popUpIndex++;
-            }
-        }
-        else if (popUpIndex == 2)
-        {
-            cameraMovement.PauseCameraMovement();
-
-            if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
-            {
-                cameraMovement.AllowCameraMovement();
-                StartCoroutine(WaitAndAdvance(5f));
-                popUpIndex++;
-
-            }
-        }
-        else if (popUpIndex == 3)
-        {
-            cameraMovement.PauseCameraMovement();
-
-            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
-            {
+            case 0:
+            case 1:
+            case 3:
+            case 4:
+            case 5:
+            case 6:
                 cameraMovement.PauseCameraMovement();
-                popUpIndex++;
-            }
-        }
-        else if (popUpIndex == 4)
-        {
-            cameraMovement.PauseCameraMovement();
+                if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
+                {
+                    popUpIndex++;
+                }
+                break;
 
-            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
-            {
-                popUpIndex++;
-            }
-        }
-        else if (popUpIndex == 5)
-        {
-            cameraMovement.PauseCameraMovement();
+            case 2:
+                if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+                {
+                    cameraMovement.AllowCameraMovement();
+                }
 
-            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
-            {
-                popUpIndex++;
-            }
-        }
-        else if (popUpIndex == 6)
-        {
-            cameraMovement.PauseCameraMovement();
+                break;
 
-            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
-            {
-                popUpIndex++;
-            }
-        }
-        else if (popUpIndex == 7)
-        {
+            case 7:
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    popUpIndex++;
+                }
+                break;
 
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                popUpIndex++;
-            }
-        }
-        else if (popUpIndex == 8)
-        {
+            case 8:
+                if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
+                {
+                    cameraMovement.AllowCameraMovement();
+                }
+                break;
 
-            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
-            {
-                cameraMovement.AllowCameraMovement();
-            }
+            default:
+                break;
         }
     }
+
     private IEnumerator WaitAndAdvance(float waitTime)
     {
-        float time = 0;
-        while (time < waitTime)
-        {
-            time += Time.deltaTime;
-            yield return null;
-        }
+        yield return new WaitForSeconds(waitTime);
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+
+
+    public void AdvancePopUpIndex()
     {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            playerNearGem = true;  // Player is now near the gem
-        }
+        popUpIndex++;
     }
 }

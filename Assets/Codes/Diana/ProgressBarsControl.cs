@@ -4,7 +4,6 @@ using UnityEngine.UI;
 
 public class ProgressBarsControl : MonoBehaviour
 {
-    public Slider HealthBar;
     public Slider GPABar;
     public Slider SocialBar;
 
@@ -37,7 +36,6 @@ public class ProgressBarsControl : MonoBehaviour
         Debug.Log(GPAScore); 
 
         // Set max values for sliders
-        HealthBar.maxValue = 50f;
         GPABar.maxValue = 50f;
         SocialBar.maxValue = 50f;
 
@@ -80,17 +78,6 @@ public class ProgressBarsControl : MonoBehaviour
         return playerMoney;
     }
 
-    public void IncreaseHealth(float value)
-    {
-        HealthBar.value = Mathf.Clamp(HealthBar.value + value, 0f, HealthBar.maxValue);
-        PlayerPrefs.SetFloat("Health", HealthBar.value);  // Save progress
-        PlayerPrefs.Save();
-
-        if (HealthBar.value < 0f)
-        {
-            RestartGame();
-        }
-    }
 
     public void IncreaseGPA(float value)
     {
@@ -149,9 +136,7 @@ public class ProgressBarsControl : MonoBehaviour
     {
         Debug.Log("Restarting game");
 
-        // Clear all saved progress
-        //PlayerPrefs.DeleteKey("Health");
-        // PlayerPrefs.DeleteKey("PlayerMoney");
+      
         PlayerPrefs.DeleteKey("GPA");
         PlayerPrefs.DeleteKey("Social");
         PlayerPrefs.DeleteKey("CoinCount"); 
