@@ -7,12 +7,12 @@ public class TutorialManager : MonoBehaviour
 {
     public GameObject[] popUps;
     private int popUpIndex;
-    public CameraMovement cameraMovement; // Reference to CameraMovement script
+    public CameraMovement_Tutorial cameraMovement_tutorial; // Reference to CameraMovement script
 
 
     void Start()
     {
-        cameraMovement = FindObjectOfType<CameraMovement>(); // Get the CameraMovement script
+        cameraMovement_tutorial = FindObjectOfType<CameraMovement_Tutorial>(); // Get the CameraMovement script
     }
 
     void Update()
@@ -31,7 +31,7 @@ public class TutorialManager : MonoBehaviour
             case 4:
             case 5:
             case 6:
-                cameraMovement.PauseCameraMovement();
+                cameraMovement_tutorial.PauseCameraMovement();
                 if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
                 {
                     popUpIndex++;
@@ -41,7 +41,7 @@ public class TutorialManager : MonoBehaviour
             case 2:
                 if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
                 {
-                    cameraMovement.AllowCameraMovement();
+                    cameraMovement_tutorial.AllowCameraMovement();
                 }
 
                 break;
@@ -56,7 +56,7 @@ public class TutorialManager : MonoBehaviour
             case 8:
                 if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
                 {
-                    cameraMovement.AllowCameraMovement();
+                    cameraMovement_tutorial.AllowCameraMovement();
                 }
                 break;
 

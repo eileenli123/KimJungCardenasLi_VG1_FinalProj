@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraMovement : MonoBehaviour
+public class CameraMovement_Tutorial : MonoBehaviour
 {
     public float cameraSpeed; // Speed of the camera movement
     private TutorialManager tutorialManager;
@@ -16,7 +16,12 @@ public class CameraMovement : MonoBehaviour
 
     void Update()
     {
-        // Move the camera only if it's not paused and there's no active dialogue
+        if (pauseCamera)
+        {
+            transform.Translate(Vector3.right * 0 * Time.deltaTime);
+
+        }
+
         if (!pauseCamera && !isDialogueActive)
         {
             transform.Translate(Vector3.right * cameraSpeed * Time.deltaTime);

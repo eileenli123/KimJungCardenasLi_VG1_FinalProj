@@ -3,10 +3,10 @@ using UnityEngine;
 public class StopTrigger : MonoBehaviour
 {
     public TutorialManager tutorialManager; // Reference to the TutorialManager script
+    private bool hasTriggered = false; // Boolean to ensure the trigger only happens once
 
     private void Start()
     {
-        // Find and link the TutorialManager if it's not already set in the inspector
         if (tutorialManager == null)
         {
             tutorialManager = FindObjectOfType<TutorialManager>();
@@ -15,12 +15,11 @@ public class StopTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // Check if the player enters the stop area
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !hasTriggered)
         {
-            // Pause camera movement and advance the tutorial
-            tutorialManager.cameraMovement.PauseCameraMovement();
-            tutorialManager.AdvancePopUpIndex();  // Method in TutorialManager to increase popUpIndex
+            tutorialManager.cameraMovement_tutorial.PauseCameraMovement();
+            tutorialManager.AdvancePopUpIndex();
+            hasTriggered = true;
         }
     }
 }

@@ -329,9 +329,9 @@ MonoBehaviour:
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 0.7
-  m_Text: 'Good job! When you play, try to collect as many gems as possible. They
-    are essential for you to complete college. '
+    m_LineSpacing: 1
+  m_Text: "Good job! When you play, try to collect as many gems as possible. \nThey
+    are essential for you to complete college. "
 --- !u!222 &12917576
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -601,7 +601,7 @@ MonoBehaviour:
   - {fileID: 1516633578}
   - {fileID: 720120441}
   - {fileID: 494529396}
-  cameraMovement: {fileID: 1830578439}
+  cameraMovement_tutorial: {fileID: 0}
 --- !u!1 &196899391
 GameObject:
   m_ObjectHideFlags: 0
@@ -13858,7 +13858,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1830578434}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b15ce26b60dd48ecb6f2aa60ce7c6ec, type: 3}
+  m_Script: {fileID: 11500000, guid: 558b00847ce7947eba26c01826ac67ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   cameraSpeed: 2
