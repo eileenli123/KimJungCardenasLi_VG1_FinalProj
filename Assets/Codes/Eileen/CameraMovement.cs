@@ -23,6 +23,7 @@ public class CameraMovement : MonoBehaviour
         }
     }
 
+
     public void StartDialogue()
     {
         isDialogueActive = true;
