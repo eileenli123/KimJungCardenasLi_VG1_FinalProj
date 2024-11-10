@@ -11664,13 +11664,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebe755a7675ef5e48a727c9d9aa50e69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HealthBar: {fileID: 553333362}
   GPABar: {fileID: 516579228}
   SocialBar: {fileID: 1394617479}
   coinCountText: {fileID: 1278468348}
   GPAScoreText: {fileID: 0}
   GPAGemText: {fileID: 0}
   socialGemText: {fileID: 0}
+  majorText: {fileID: 0}
 --- !u!114 &595392450
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13833,7 +13833,7 @@ SpriteRenderer:
   m_SortingLayerID: -273721197
   m_SortingLayer: -2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 46eb1cba021194602abcc02b5ebc2b6e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6eaf5c3d9aee14638ae6c251a4f54af3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -14585,13 +14585,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebe755a7675ef5e48a727c9d9aa50e69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HealthBar: {fileID: 553333362}
   GPABar: {fileID: 1779098473}
   SocialBar: {fileID: 2094462159}
   coinCountText: {fileID: 1278468348}
   GPAScoreText: {fileID: 0}
   GPAGemText: {fileID: 0}
   socialGemText: {fileID: 0}
+  majorText: {fileID: 0}
 --- !u!114 &1453872067
 MonoBehaviour:
   m_ObjectHideFlags: 0
