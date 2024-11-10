@@ -1,38 +1,44 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Analytics;
 using UnityEngine.SceneManagement;
 
 public class EnterSchool_nextScene : MonoBehaviour
 {
-    public ProgressBarsControl progressBarsControl; 
+    public ProgressBarsControl progressBarsControl;
+
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.GetComponent<PlayerController2>())
+
+
+        if (other.gameObject.GetComponent<PlayerController2>() || other.gameObject.CompareTag("Player"))
         {
             string sceneName = SceneManager.GetActiveScene().name;
-
-            
-            if (sceneName == "Level1")
+            Debug.Log(sceneName); 
+            if(sceneName == "Tutorial")
             {
-                float currentGPA = PlayerPrefs.GetFloat("GPAScore", 0f); 
+                SceneManager.LoadScene("Level1");
+            } else {
+                float currentGPA = PlayerPrefs.GetFloat("GPAScore", 0f);
+                float minGPAReq = PlayerPrefs.GetFloat("gpaReq", 2.0f);
 
-                if (currentGPA >= 2.0f)
-                { //passed the level
-                    SceneManager.LoadScene("Level1");
-                }
-                else
+                if (currentGPA< minGPAReq)
                 {
                     progressBarsControl.RestartGame(); //reset all stats 
                     SceneManager.LoadScene("Lose");
+                } else if (sceneName == "Level1")
+                {
+                    SceneManager.LoadScene("Choose Major"); //TODO: replace with level 2
+                } else if (sceneName == "Choose Major")
+                {
+                    SceneManager.LoadScene("Choose Major"); //reload curr level temporarily 
                 }
+
+
             }
-            else
-            {
-                SceneManager.LoadScene("Level1"); //TODO: chnage this -- made default to level 1 so tutorial level loads level 1 
-                //add logic for other levels when made 
-            }
+
         }
     }
 }

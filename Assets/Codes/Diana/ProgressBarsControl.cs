@@ -12,6 +12,7 @@ public class ProgressBarsControl : MonoBehaviour
 
     public Text GPAGemText;
     public Text socialGemText;
+    public Text majorText; 
 
     private float playerMoney;
     private int coinCount;  // Variable to track the coin count
@@ -132,6 +133,14 @@ public class ProgressBarsControl : MonoBehaviour
         }
     }
 
+    public void setMajor(float gpa, string majorName)
+    {
+        PlayerPrefs.SetFloat("gpaReq", gpa);
+        PlayerPrefs.Save();
+        majorText.text = "Major: " + majorName + "\n(" + gpa.ToString("F1") + " required)";  
+        Debug.Log($"{majorName} major selected. GPA requirement set to {gpa}");
+    }
+
     public void RestartGame()
     {
         Debug.Log("Restarting game");
@@ -142,6 +151,8 @@ public class ProgressBarsControl : MonoBehaviour
         PlayerPrefs.DeleteKey("CoinCount"); 
         PlayerPrefs.DeleteKey("GPAScore");
         PlayerPrefs.DeleteKey("numGrades");
+        PlayerPrefs.DeleteKey("gpaReq");
+
 
 
         // Reload the current scene, which will reset all bars to 0
