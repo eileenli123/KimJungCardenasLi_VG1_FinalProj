@@ -12,6 +12,7 @@ namespace Diana
         public TextMeshProUGUI dialogueText;
         public TextMeshProUGUI[] choiceTexts;
         public Button[] choiceButtons;
+        public Button continueButton;
         private Dialogue_copy currentDialogue;
         private Queue<string> sentences;
         private ProgressBarsControl progressBarControl;
@@ -29,6 +30,8 @@ namespace Diana
                 Debug.Log("Parent Position: " + choiceButtons[i].transform.parent.position);
                 Debug.Log("Button Position: " + choiceButtons[i].GetComponent<RectTransform>().anchoredPosition);
                     }
+            continueButton.gameObject.SetActive(false);
+            continueButton.onClick.AddListener(EndDialogue);
         }
 
         public void StartDialogue(Dialogue_copy dialogue)
@@ -124,8 +127,12 @@ namespace Diana
 
                 // Update the coin count display after making a choice
                 progressBarControl.UpdateCoinCountText();
-
-                EndDialogue(); 
+                foreach (Button button in choiceButtons)
+                {
+                    button.gameObject.SetActive(false);
+                }
+                
+                continueButton.gameObject.SetActive(true);
             }
             else
             {
