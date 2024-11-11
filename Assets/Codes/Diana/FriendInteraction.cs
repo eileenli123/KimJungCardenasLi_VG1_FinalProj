@@ -46,6 +46,8 @@ public class FriendInteraction : MonoBehaviour
 
             dialogueManager.StartDialogue(dialogueData); 
 
+            dialogueManager.OnDialogueEnd += HandleDialogueEnd;
+
             // Shift the camera upward for the dialogue
             cameraFollowPlayer.StartDialogue(); 
 
@@ -58,6 +60,20 @@ public class FriendInteraction : MonoBehaviour
         }
     }
 
+    private void HandleDialogueEnd()
+        {
+            dialogueManager.OnDialogueEnd -= HandleDialogueEnd;
+
+            playerMovement.enabled = true;
+
+            cameraFollowPlayer.EndDialogue();
+
+            dialogueUI.SetActive(false);
+
+            // Set dialogue as inactive
+            isDialogueActive = false;
+        }
+
     // Check when player leaves the trigger area of the friend sprite
     private void OnTriggerExit2D(Collider2D other)
     {
@@ -65,18 +81,18 @@ public class FriendInteraction : MonoBehaviour
         {
             isDialogueActive = false; // Set the dialogue as inactive
 
-            // Hide the dialogue UI
             dialogueUI.SetActive(false);
 
             // Reset player movement and camera
             playerMovement.enabled = true;
+            cameraFollowPlayer.EndDialogue();
+
             if (cameraMovement != null)
             {
                 cameraMovement.EndDialogue();  // Resume CameraMovement after dialogue
             }
 
-            // Reset the camera to normal follow behavior
-            cameraFollowPlayer.EndDialogue();
+            dialogueManager.OnDialogueEnd -= HandleDialogueEnd;
         }
     }
 }

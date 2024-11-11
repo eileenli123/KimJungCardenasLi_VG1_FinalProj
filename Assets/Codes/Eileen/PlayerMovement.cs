@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     //Will be fixed by Seo-Eun
     [SerializeField] private float speed;
     private Rigidbody2D _rb;
+    public bool canMove = true;
 
     private void Awake()
     {
@@ -17,6 +18,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        if (!canMove)
+        {
+            _rb.velocity = new Vector2(0, _rb.velocity.y); // Stop horizontal movement but allow gravity
+            return;
+        }
+        
         if (Input.GetKey(KeyCode.LeftArrow)) {
             _rb.velocity = new Vector2(-speed, 0); 
         }

@@ -15,6 +15,8 @@ namespace Diana
         private Dialogue_copy currentDialogue;
         private Queue<string> sentences;
         private ProgressBarsControl progressBarControl;
+        public delegate void DialogueEndHandler();
+        public event DialogueEndHandler OnDialogueEnd;
 
         void Start()
         {
@@ -135,6 +137,9 @@ namespace Diana
         void EndDialogue()
         {
             Debug.Log("End of Conversation");
+            
+            OnDialogueEnd?.Invoke();
+
             foreach (Button button in choiceButtons)
             {
                 button.gameObject.SetActive(false);
