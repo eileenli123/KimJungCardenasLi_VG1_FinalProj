@@ -75,13 +75,14 @@ public class PlayerControllerV3 : MonoBehaviour
         HandleJumpInput();
         DetectClimbable();
         HandleClimbingInput();
+         HandleMovement();
+        HandleClimbing();
+        UpdateAnimator();
     }
 
     void FixedUpdate()
     {
-        HandleMovement();
-        HandleClimbing();
-        UpdateAnimator();
+       
     }
 
     /// <summary>
@@ -97,14 +98,14 @@ public class PlayerControllerV3 : MonoBehaviour
         {
             moveInput = -1f;
             sprite.flipX = true;
-            Debug.Log("Moving Left");
+            //Debug.Log("Moving Left");
         }
         // Check for right movement
         else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
             moveInput = 1f;
             sprite.flipX = false;
-            Debug.Log("Moving Right");
+            //Debug.Log("Moving Right");
         }
     }
 
@@ -141,7 +142,7 @@ public class PlayerControllerV3 : MonoBehaviour
         }
     }
 
-    /// <summary>
+    /// <summary>d
     /// Handles climbing input and state transitions.
     /// </summary>
     private void HandleClimbingInput()
