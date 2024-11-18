@@ -17,7 +17,9 @@ public class ProgressBarsControl : MonoBehaviour
     private float playerMoney;
     private int coinCount;  // Variable to track the coin count
     private float GPAScore;
-    private float numGrades; 
+    private float numGrades;
+
+
 
 
     void Start()
@@ -27,20 +29,21 @@ public class ProgressBarsControl : MonoBehaviour
         playerMoney = PlayerPrefs.GetFloat("PlayerMoney", 0f);
         coinCount = PlayerPrefs.GetInt("CoinCount", 0);
         GPAScore = PlayerPrefs.GetFloat("GPAScore", 4.0f);
-        numGrades = PlayerPrefs.GetFloat("numGrades", 1f); 
+        numGrades = PlayerPrefs.GetFloat("numGrades", 1f);
 
 
         UpdateCoinCountText();
         GPAGemText.text = "GPA: " + GPABar.value;
         socialGemText.text = "Social Status: " + SocialBar.value;
         GPAScoreText.text = "GPA: " + GPAScore.ToString("F1");
-        Debug.Log(GPAScore); 
+        majorText.text = "Major: " + PlayerPrefs.GetString("major", "undecided") + "\n(" + PlayerPrefs.GetFloat("gpaReq", 2.0f).ToString("F1") + " required)";
 
         // Set max values for sliders
         GPABar.maxValue = 50f;
         SocialBar.maxValue = 50f;
 
     }
+
 
     public void IncreaseCoins(int amount)
     {
@@ -136,6 +139,7 @@ public class ProgressBarsControl : MonoBehaviour
     public void setMajor(float gpa, string majorName)
     {
         PlayerPrefs.SetFloat("gpaReq", gpa);
+        PlayerPrefs.SetString("major", majorName);
         PlayerPrefs.Save();
         majorText.text = "Major: " + majorName + "\n(" + gpa.ToString("F1") + " required)";  
         Debug.Log($"{majorName} major selected. GPA requirement set to {gpa}");
@@ -145,7 +149,7 @@ public class ProgressBarsControl : MonoBehaviour
     {
         Debug.Log("Restarting game");
 
-      
+        //reset all bars to 0
         PlayerPrefs.DeleteKey("GPA");
         PlayerPrefs.DeleteKey("Social");
         PlayerPrefs.DeleteKey("CoinCount"); 
@@ -155,7 +159,7 @@ public class ProgressBarsControl : MonoBehaviour
 
 
 
-        // Reload the current scene, which will reset all bars to 0
+        
         //SceneManager.LoadScene(SceneManager.GetActiveScene().name); // handle which level load depending on reason why they lost
     }
 

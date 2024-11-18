@@ -7368,8 +7368,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Welcome to the store! Here, you can use your coins to help you advance
-    in the game. '
+  m_text: Shop
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 426f7a7076c5e43509d3bf000d795026, type: 2}
   m_sharedMaterial: {fileID: -2247220917585905052, guid: 426f7a7076c5e43509d3bf000d795026, type: 2}
@@ -7396,8 +7395,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
-  m_fontSizeBase: 30
+  m_fontSize: 50
+  m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -12132,7 +12131,7 @@ GameObject:
   - component: {fileID: 7304211230414254537}
   - component: {fileID: 8468083759179214929}
   m_Layer: 5
-  m_Name: WUSA(introduce orientation) (1)
+  m_Name: Advisor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12282,8 +12281,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Before you start college, please choose a major. Each one will have a
-    \ndifferent GPA requirement to pass the level. \n(Click on the major you want)"
+  m_text: "Hi again! I hope your first year went well. Do you want to switch your
+    major? \n\nThis will be your last oppportunity to switch. "
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 426f7a7076c5e43509d3bf000d795026, type: 2}
   m_sharedMaterial: {fileID: -2247220917585905052, guid: 426f7a7076c5e43509d3bf000d795026, type: 2}

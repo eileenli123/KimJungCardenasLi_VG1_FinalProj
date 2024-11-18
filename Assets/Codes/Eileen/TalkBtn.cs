@@ -15,7 +15,6 @@ public class TalkBtn : MonoBehaviour
             
             foreach (ContactPoint2D contact in collision.contacts)
             {
-                Debug.Log("Contact point normal: " + contact.normal);
                 if (contact.normal.y > 0.9f)
                 {
                     //create social gem object 

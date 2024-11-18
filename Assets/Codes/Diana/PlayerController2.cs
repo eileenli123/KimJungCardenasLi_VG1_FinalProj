@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerController2 : MonoBehaviour
 {
+    public static PlayerController2 instance;
+
     // Outlet
     Rigidbody2D _rigidbody2D;
     public int jumpsLeft;
@@ -12,6 +14,7 @@ public class PlayerController2 : MonoBehaviour
     SpriteRenderer sprite;
 
     private TutorialManager tutorialManager;
+    public bool isPaused = false; 
 
     void Start()
     {
@@ -40,6 +43,7 @@ public class PlayerController2 : MonoBehaviour
 
     private void Awake()
     {
+        instance = this; 
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _rigidbody2D.gravityScale = 2.5f;  // Increase gravity to make player fall faster
     }
@@ -52,6 +56,11 @@ public class PlayerController2 : MonoBehaviour
 
     void Update()
     {
+        if (isPaused)
+        {
+            return; 
+        }
+        
         _rigidbody2D.drag = 0f;
 
 
