@@ -4,40 +4,53 @@ using UnityEngine.UI;
 
 public class ProgressBarsControl : MonoBehaviour
 {
-    public Slider GPABar;
-    public Slider SocialBar;
+    public static ProgressBarsControl instance; //create an instance to be use methods in mainMenu class
 
-    public Text coinCountText;  // Reference to the Text component for coin count display
+    //Reference to texts to update them as progress bar updates
+    public Text coinCountText;  
     public Text GPAScoreText; 
-
     public Text GPAGemText;
     public Text socialGemText;
-    public Text majorText; 
+    public Text majorText;
 
-    private float playerMoney;
-    private int coinCount;  // Variable to track the coin count
+
+    //local trackers (need to still update player prefs as progress bar updates)
+    public Slider GPABar;
+    public Slider SocialBar;
+    private int coinCount; 
     private float GPAScore;
     private float numGrades;
+    private string major;
+    private float gpaReq;
 
 
+    private void Awake()
+    {
+        instance = this;
+    }
 
 
     void Start()
     {
+        //store current level to come back to if restart level 
+        PlayerPrefs.SetString("levelName", SceneManager.GetActiveScene().name);
+
+        //local trackers (for this level) 
         GPABar.value = PlayerPrefs.GetFloat("GPA", 0f);
         SocialBar.value = PlayerPrefs.GetFloat("Social", 0f);
-        playerMoney = PlayerPrefs.GetFloat("PlayerMoney", 0f);
         coinCount = PlayerPrefs.GetInt("CoinCount", 0);
         GPAScore = PlayerPrefs.GetFloat("GPAScore", 4.0f);
         numGrades = PlayerPrefs.GetFloat("numGrades", 1f);
+        major = PlayerPrefs.GetString("major", "undecided");
+        gpaReq = PlayerPrefs.GetFloat("gpaReq", 2f); 
 
-
+        //update all the text 
         UpdateCoinCountText();
-        GPAGemText.text = "GPA: " + GPABar.value;
-        socialGemText.text = "Social Status: " + SocialBar.value;
-        GPAScoreText.text = "GPA: " + GPAScore.ToString("F1");
-        majorText.text = "Major: " + PlayerPrefs.GetString("major", "undecided") + "\n(" + PlayerPrefs.GetFloat("gpaReq", 2.0f).ToString("F1") + " required)";
-
+        UpdateGPAGemCountText();
+        UpdateSocialGemCountText();
+        UpdateGPAScoreText();
+        UpdateMajorText(); 
+       
         // Set max values for sliders
         GPABar.maxValue = 50f;
         SocialBar.maxValue = 50f;
@@ -45,25 +58,19 @@ public class ProgressBarsControl : MonoBehaviour
     }
 
 
+    //COIN Controls 
     public void IncreaseCoins(int amount)
     {
         coinCount += amount;
-        PlayerPrefs.SetInt("CoinCount", coinCount);
-        PlayerPrefs.Save();
-
-        Debug.Log("Coins increased, current count: " + coinCount);
         UpdateCoinCountText();
     }
+
 
     public bool DecreaseCoins(int amount)
     {
         if (coinCount >= amount)
         {
             coinCount -= amount;
-            PlayerPrefs.SetInt("CoinCount", coinCount);
-            PlayerPrefs.Save();
-
-            Debug.Log("Coins decreased, current count: " + coinCount);
             UpdateCoinCountText();
             return true;
         }
@@ -71,96 +78,117 @@ public class ProgressBarsControl : MonoBehaviour
         return false;
     }
 
-    // Update the coin count text display
     public void UpdateCoinCountText()
     {
-        coinCountText.text = "" + coinCount;  // Display the coin count
-    }
-
-    public float GetMoney()
-    {
-        return playerMoney;
+        coinCountText.text = "" + coinCount;  
     }
 
 
+
+    //GPA Gem Controls 
     public void IncreaseGPA(float value)
     {
         GPABar.value = Mathf.Clamp(GPABar.value + value, 0f, GPABar.maxValue);
-        PlayerPrefs.SetFloat("GPA", GPABar.value);
-        PlayerPrefs.Save();
-        GPAGemText.text = "GPA: " + GPABar.value; 
+        UpdateGPAGemCountText();
 
         if (GPABar.value < 0f)
         {
-            RestartGame();
+            SceneManager.LoadScene("Lose");
         }
     }
 
-
-    public void decreaseGPA(float value)
+    
+    public void UpdateGPAGemCountText()
     {
+        GPAGemText.text = "GPA: " + GPABar.value;  
+    }
+
+
+    //TODO :could just pass negative value (make sure uses of decreaseGPA is removed first) 
+    public void decreaseGPA(float value)
+    { 
         GPABar.value = Mathf.Clamp(GPABar.value - value, 0f, GPABar.maxValue);
-        PlayerPrefs.SetFloat("GPA", GPABar.value);
-        PlayerPrefs.Save();
         GPAGemText.text = "GPA: " + GPABar.value;
 
         if (GPABar.value < 0f)
         {
-            RestartGame();
+            SceneManager.LoadScene("Lose");
         }
     }
 
-    public void enterGrade(float grade)
-    {   //A = 4, B=3, C=2, D=1
-        GPAScore = ((GPAScore * numGrades) + grade) / (numGrades + 1); 
-        PlayerPrefs.SetFloat("numGrades", numGrades + 1);
-        numGrades += 1;
-        PlayerPrefs.SetFloat("GPAScore", GPAScore);
-        PlayerPrefs.Save();
-        GPAScoreText.text = "GPA: " + GPAScore.ToString("F1");
 
-    }
-
-
+    //Social Gem Controls 
     public void IncreaseSocial(float value)
     {
         SocialBar.value = Mathf.Clamp(SocialBar.value + value, 0f, SocialBar.maxValue);
-        PlayerPrefs.SetFloat("Social", SocialBar.value);  // Save progress
-        PlayerPrefs.Save();
-        socialGemText.text = "Social Status: " + SocialBar.value; 
+        UpdateSocialGemCountText(); 
 
         if (SocialBar.value < 0f)
         {
-            Debug.Log("Social is 0");
-            RestartGame();
+            SceneManager.LoadScene("Lose");
         }
     }
 
-    public void setMajor(float gpa, string majorName)
+    public void UpdateSocialGemCountText()
     {
-        PlayerPrefs.SetFloat("gpaReq", gpa);
-        PlayerPrefs.SetString("major", majorName);
-        PlayerPrefs.Save();
-        majorText.text = "Major: " + majorName + "\n(" + gpa.ToString("F1") + " required)";  
-        Debug.Log($"{majorName} major selected. GPA requirement set to {gpa}");
+        socialGemText.text = "Social Status: " + SocialBar.value;
     }
 
+    //GPA control
+    public void enterGrade(float grade)
+    {   //A = 4, B=3, C=2, D=1
+        GPAScore = ((GPAScore * numGrades) + grade) / (numGrades + 1); 
+        numGrades += 1;
+        UpdateGPAScoreText(); 
+
+    }
+
+    public void UpdateGPAScoreText()
+    {
+        GPAScoreText.text = "GPA: " + GPAScore.ToString("F1");
+    }
+
+
+    //major control
+    public void setMajor(float gpa, string majorName)
+    {
+        major = majorName;
+        gpaReq = gpa;
+        UpdateMajorText();
+    }
+
+    public void UpdateMajorText()
+    {
+        majorText.text = "Major: " + major + "\n(" + gpaReq.ToString("F1") + " required)";
+    }
+
+
+    //only set stats if player passed the level (should restart level w initial level stats) 
+    public void setAllStats()
+    {
+        PlayerPrefs.SetFloat("GPA", GPABar.value);
+        PlayerPrefs.SetFloat("Social", SocialBar.value);
+        PlayerPrefs.SetFloat("numGrades", numGrades + 1);
+        PlayerPrefs.SetFloat("GPAScore", GPAScore);
+        PlayerPrefs.SetInt("CoinCount", coinCount);
+        PlayerPrefs.SetFloat("gpaReq", gpaReq);
+        PlayerPrefs.SetString("major", major);
+        PlayerPrefs.Save();
+    }
+
+
+
+    //set everything back to 0 
     public void RestartGame()
     {
-        Debug.Log("Restarting game");
-
-        //reset all bars to 0
         PlayerPrefs.DeleteKey("GPA");
         PlayerPrefs.DeleteKey("Social");
         PlayerPrefs.DeleteKey("CoinCount"); 
         PlayerPrefs.DeleteKey("GPAScore");
         PlayerPrefs.DeleteKey("numGrades");
         PlayerPrefs.DeleteKey("gpaReq");
-
-
-
-        
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().name); // handle which level load depending on reason why they lost
+        PlayerPrefs.DeleteKey("levelName");
+        PlayerPrefs.DeleteKey("major"); 
     }
 
 

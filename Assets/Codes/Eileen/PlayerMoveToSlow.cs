@@ -7,7 +7,6 @@ public class PlayerMoveToSlow : MonoBehaviour
 {
     public Camera cameraTransform;
     public float loseOffset = 0.1f; // Offset for the left edge, default is slightly inside the view
-    public ProgressBarsControl progressBarsControl; 
 
     void Update()
     {
@@ -17,18 +16,8 @@ public class PlayerMoveToSlow : MonoBehaviour
         // Check if the player's position is to the left of the left edge of the camera
         if (transform.position.x < leftEdge)
         {
-            RestartLevel();
+            SceneManager.LoadScene("Lose");
         }
-    }
-
-    void RestartLevel()
-    {
-        if (progressBarsControl != null)
-        {
-            progressBarsControl.RestartGame();  // Call RestartGame to reset all stats
-        }
-        SceneManager.LoadSceneAsync("Lose");
-
     }
 
 }

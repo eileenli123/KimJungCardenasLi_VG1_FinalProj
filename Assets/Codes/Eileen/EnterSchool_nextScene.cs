@@ -6,41 +6,48 @@ using UnityEngine.SceneManagement;
 
 public class EnterSchool_nextScene : MonoBehaviour
 {
-    public ProgressBarsControl progressBarsControl;
+    private string currentSceneName;
 
+    private void Start()
+    {
+        currentSceneName = SceneManager.GetActiveScene().name;
+        Debug.Log("new level started: " + currentSceneName); 
+    }
 
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        //TODO: different levels have different scripts : change to be consistent
+        //TODO: different levels have different scripts -- change to be consistent
         if (other.gameObject.GetComponent<PlayerController2>() || other.gameObject.CompareTag("Player"))
         {
-            string sceneName = SceneManager.GetActiveScene().name;
+            float currentGPA = PlayerPrefs.GetFloat("GPAScore", 4f);
+            float minGPAReq = PlayerPrefs.GetFloat("gpaReq", 2.0f);
 
-
-            //TODO: reorganize conditions (first check gpa req met)
-            if (sceneName == "Tutorial")
+            if (currentGPA < minGPAReq)
             {
-                SceneManager.LoadScene("Choose Major");
-            } else if (sceneName == "Choose Major") {
-                SceneManager.LoadScene("Level1");
-            }
-            else if (sceneName == "Choose Major 2")
+                Debug.Log("GPA: " + currentSceneName + "did not meet req: " + minGPAReq); 
+                SceneManager.LoadScene("Lose"); //just goes to lose screen (doesnt reset stats until main menu pressed) 
+            } else
             {
-                SceneManager.LoadScene("Level2");
-            }
-            else {
-                float currentGPA = PlayerPrefs.GetFloat("GPAScore", 0f);
-                float minGPAReq = PlayerPrefs.GetFloat("gpaReq", 2.0f);
+                ProgressBarsControl.instance.setAllStats(); //set all stats earned from current level before loading next level 
 
-                if (currentGPA < minGPAReq)
+
+                //TODO: conditional checking (May be better to enumerate instead)
+                if (currentSceneName == "Tutorial")
                 {
-                    progressBarsControl.RestartGame(); //reset all stats 
-                    SceneManager.LoadScene("Lose");
-                } else if (sceneName == "Level1")
+                    SceneManager.LoadScene("Choose Major");
+                } else if (currentSceneName == "Choose Major")
                 {
-                    SceneManager.LoadScene("Choose Major 2"); 
-                }                
+                    SceneManager.LoadScene("Level1");
+                }
+                else if (currentSceneName == "Level1")
+                {
+                    SceneManager.LoadScene("Choose Major 2");
+                }
+                else if (currentSceneName == "Choose Major 2")
+                {
+                    SceneManager.LoadScene("Level2");
+                }
 
             }
 
