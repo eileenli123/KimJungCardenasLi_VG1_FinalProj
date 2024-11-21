@@ -15,6 +15,11 @@ public class MazeObstacle : MonoBehaviour
             RestartLevel();
 
         }
+        if (other.gameObject.GetComponent<PlayerController_Levels>())
+        {
+            RestartLevel();
+        }
+
     }
 
     void RestartLevel()

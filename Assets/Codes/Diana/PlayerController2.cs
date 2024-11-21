@@ -12,16 +12,24 @@ public class PlayerController2 : MonoBehaviour
     private ProgressBarsControl progressBarControl;  // Reference to the progress bar controller
     Animator animator;
     SpriteRenderer sprite;
+    public bool isPaused = false;
 
-    private TutorialManager tutorialManager;
-    public bool isPaused = false; 
 
+
+
+    void Awake()
+    {
+        instance = this;
+        _rigidbody2D = GetComponent<Rigidbody2D>();
+    }
     void Start()
     {
         // Find the ProgressBarsControl script in the scene
         progressBarControl = FindObjectOfType<ProgressBarsControl>();
         animator = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
+        _rigidbody2D = GetComponent<Rigidbody2D>();
+
 
 
     }
@@ -29,8 +37,8 @@ public class PlayerController2 : MonoBehaviour
     //For animation
     void FixedUpdate()
     {
-        //This update event is sync'd with the physics engine
         animator.SetFloat("Speed", _rigidbody2D.velocity.magnitude);
+
         if (_rigidbody2D.velocity.magnitude > 0)
         {
             animator.speed = _rigidbody2D.velocity.magnitude / 3f;
@@ -40,89 +48,61 @@ public class PlayerController2 : MonoBehaviour
             animator.speed = 1f;
         }
     }
-
-    private void Awake()
+    private void OnEnable()
     {
-        instance = this; 
-        _rigidbody2D = GetComponent<Rigidbody2D>();
-        _rigidbody2D.gravityScale = 2.5f;  // Increase gravity to make player fall faster
+        if (animator != null)
+        {
+            animator.Rebind();
+            animator.Update(0f);
+        }
     }
 
-    // Update is called once per frame
-    float maxSpeed = 18f;
-    float acceleration = 5f;  // Adjust to control how quickly the player accelerates
-    bool isMovingLeft = false;
-    bool isMovingRight = false;
 
+    // Update is called once per frame
     void Update()
     {
         if (isPaused)
         {
-            return; 
+            return;
         }
-        
-        _rigidbody2D.drag = 0f;
 
-
-        // Handle left movement
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
-            isMovingLeft = true;
-            isMovingRight = false;
+            /*             _rigidbody2D.AddForce(Vector2.left * 18f * Time.deltaTime, ForceMode2D.Impulse);
+             */
+            _rigidbody2D.velocity = new Vector2(-7f, _rigidbody2D.velocity.y);
+
             sprite.flipX = true;
-
-            // Apply force to the left if under max speed
-            if (_rigidbody2D.velocity.x > -maxSpeed)
-            {
-                _rigidbody2D.AddForce(Vector2.left * acceleration, ForceMode2D.Force);
-            }
         }
 
-        // Handle right movement
-        else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+
+        // Move player right
+        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
-            isMovingRight = true;
-            isMovingLeft = false;
+            /*             _rigidbody2D.AddForce(Vector2.right * 18f * Time.deltaTime, ForceMode2D.Impulse);
+             */
+            _rigidbody2D.velocity = new Vector2(7f, _rigidbody2D.velocity.y);
+
             sprite.flipX = false;
+        }
+        animator.SetFloat("Speed", Mathf.Abs(_rigidbody2D.velocity.x));
 
-            // Apply force to the right if under max speed
-            if (_rigidbody2D.velocity.x < maxSpeed)
+
+        // Jump 
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (jumpsLeft > 0)
             {
-                _rigidbody2D.AddForce(Vector2.right * acceleration, ForceMode2D.Force);
+                jumpsLeft--;
+                /* _rigidbody2D.AddForce(Vector2.up * 12f, ForceMode2D.Impulse); */
+                _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, 23f); // Use velocity for controlled jump
             }
         }
 
-        // Stop movement if neither key is pressed
-        if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.LeftArrow))
-        {
-            isMovingLeft = false;
-        }
-        if (Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.RightArrow))
-        {
-            isMovingRight = false;
-        }
-
-        // Jump logic
-        if (Input.GetKeyDown(KeyCode.Space) && jumpsLeft > 0)
-        {
-            _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, 13f);  // Apply upward velocity
-            jumpsLeft--;
-        }
         animator.SetInteger("JumpsLeft", jumpsLeft);
 
-        // Cap horizontal speed
-        if (Mathf.Abs(_rigidbody2D.velocity.x) > maxSpeed)
-        {
-            _rigidbody2D.velocity = new Vector2(Mathf.Sign(_rigidbody2D.velocity.x) * maxSpeed, _rigidbody2D.velocity.y);
-        }
 
-        // Cap vertical speed
-        if (_rigidbody2D.velocity.y > 18f)
-        {
-            _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, 18f);
-        }
     }
-
 
     // Handle collision with ground
     void OnCollisionEnter2D(Collision2D other)
@@ -151,5 +131,26 @@ public class PlayerController2 : MonoBehaviour
                 progressBarControl.IncreaseSocial(-1f);
             }
         }
+    }
+    public void PausePlayer()
+    {
+        _rigidbody2D.velocity = Vector2.zero;
+        enabled = false;
+        animator.SetFloat("Speed", 0);
+    }
+
+    public void ResumePlayer()
+    {
+        enabled = true;
+        jumpsLeft = 2;
+        if (_rigidbody2D.velocity.magnitude > 0)
+        {
+            animator.SetFloat("Speed", Mathf.Abs(_rigidbody2D.velocity.x));
+        }
+        else
+        {
+            animator.SetFloat("Speed", 0.1f);
+        }
+
     }
 }

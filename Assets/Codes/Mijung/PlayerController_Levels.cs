@@ -13,11 +13,15 @@ public class PlayerController_Levels : MonoBehaviour
 
 
 
+
     void Start()
     {
         // Find the ProgressBarsControl script in the scene
         progressBarControl = FindObjectOfType<ProgressBarsControl>();
         animator = GetComponent<Animator>();
+        sprite = GetComponent<SpriteRenderer>();
+        _rigidbody2D = GetComponent<Rigidbody2D>();
+
 
 
     }
@@ -25,8 +29,8 @@ public class PlayerController_Levels : MonoBehaviour
     //For animation
     void FixedUpdate()
     {
-        //This update event is sync'd with the physics engine
         animator.SetFloat("Speed", _rigidbody2D.velocity.magnitude);
+
         if (_rigidbody2D.velocity.magnitude > 0)
         {
             animator.speed = _rigidbody2D.velocity.magnitude / 3f;
@@ -36,50 +40,55 @@ public class PlayerController_Levels : MonoBehaviour
             animator.speed = 1f;
         }
     }
-
-    private void Awake()
+    private void OnEnable()
     {
-        _rigidbody2D = GetComponent<Rigidbody2D>();
-        _rigidbody2D.gravityScale = 2.5f;  // Increase gravity to make player fall faster
+        if (animator != null)
+        {
+            animator.Rebind();
+            animator.Update(0f);
+        }
     }
+
 
     // Update is called once per frame
     void Update()
     {
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
-            _rigidbody2D.AddForce(Vector2.left * 15f * Time.deltaTime, ForceMode2D.Impulse);
-            sprite.flipX = true;
+            /*             _rigidbody2D.AddForce(Vector2.left * 18f * Time.deltaTime, ForceMode2D.Impulse);
+             */
+            _rigidbody2D.velocity = new Vector2(-6f, _rigidbody2D.velocity.y);
 
+            sprite.flipX = true;
         }
+
 
         // Move player right
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
-            _rigidbody2D.AddForce(Vector2.right * 15f * Time.deltaTime, ForceMode2D.Impulse);
-            sprite.flipX = false;
+            /*             _rigidbody2D.AddForce(Vector2.right * 18f * Time.deltaTime, ForceMode2D.Impulse);
+             */
+            _rigidbody2D.velocity = new Vector2(6f, _rigidbody2D.velocity.y);
 
+            sprite.flipX = false;
         }
+        animator.SetFloat("Speed", Mathf.Abs(_rigidbody2D.velocity.x));
+
 
         // Jump 
-        if (Input.GetKeyDown(KeyCode.Space) && jumpsLeft > 0)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            _rigidbody2D.AddForce(Vector2.up * 13f, ForceMode2D.Impulse);
-            jumpsLeft--;
+            if (jumpsLeft > 0)
+            {
+                jumpsLeft--;
+                /* _rigidbody2D.AddForce(Vector2.up * 12f, ForceMode2D.Impulse); */
+                _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, 23f); // Use velocity for controlled jump
+            }
         }
+
         animator.SetInteger("JumpsLeft", jumpsLeft);
 
-        // Limit the player's horizontal velocity (to avoid character from accelerating too fast)
-        if (Mathf.Abs(_rigidbody2D.velocity.x) > 18f)  // Set max horizontal speed
-        {
-            _rigidbody2D.velocity = new Vector2(Mathf.Sign(_rigidbody2D.velocity.x) * 18f, _rigidbody2D.velocity.y);
-        }
 
-        // Limit the player's upward velocity
-        if (_rigidbody2D.velocity.y > 18f)  // Set max vertical speed
-        {
-            _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, 18f);
-        }
     }
 
     // Handle collision with ground
@@ -109,5 +118,26 @@ public class PlayerController_Levels : MonoBehaviour
                 progressBarControl.IncreaseSocial(-1f);
             }
         }
+    }
+    public void PausePlayer()
+    {
+        _rigidbody2D.velocity = Vector2.zero;
+        enabled = false;
+        animator.SetFloat("Speed", 0);
+    }
+
+    public void ResumePlayer()
+    {
+        enabled = true;
+        jumpsLeft = 2;
+        if (_rigidbody2D.velocity.magnitude > 0)
+        {
+            animator.SetFloat("Speed", Mathf.Abs(_rigidbody2D.velocity.x));
+        }
+        else
+        {
+            animator.SetFloat("Speed", 0.1f);
+        }
+
     }
 }

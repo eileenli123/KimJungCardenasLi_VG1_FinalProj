@@ -174,3 +174,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gemType: 1
   increaseAmount: 1
+  collectSound: {fileID: 8300000, guid: be1389b6c34d44a52ba5a175484d035c, type: 3}

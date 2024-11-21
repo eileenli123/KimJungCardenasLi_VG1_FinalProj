@@ -8,40 +8,40 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Final Proj/StartMenu.unity
     guid: 8af8fc2d93ee7484d99c6e3e93147b78
-  - enabled: 0
-    path: Assets/Scenes/Final Proj/LoseScreen.unity
-    guid: 28853d95a14da494ebdedf5d5084f152
+  - enabled: 1
+    path: Assets/Scenes/Final Proj/0.Tutorial.unity
+    guid: a4e712c862dde4847b15f8af7350d2d4
+  - enabled: 1
+    path: Assets/Scenes/Final Proj/Checkpoint1.unity
+    guid: 887489bbd63cd42b1980090b4311e262
+  - enabled: 1
+    path: Assets/Scenes/Final Proj/1.Freshman.unity
+    guid: 13acb96a4d8d94b15a491c487e11bcf2
+  - enabled: 1
+    path: Assets/Scenes/Final Proj/Checkpoint2.unity
+    guid: 2c88bc21a8bcf49ae908e52af40295df
+  - enabled: 1
+    path: Assets/Scenes/Final Proj/2.Sophomore.unity
+    guid: 77d40922da3a1452c8122cca891488de
+  - enabled: 1
+    path: Assets/Scenes/Final Proj/Checkpoint3.unity
+    guid: 67860c3d0610e4ff08888fd2bb163e2b
+  - enabled: 1
+    path: Assets/Scenes/Final Proj/3.Junior.unity
+    guid: 28513d6abaa39594b816c930d0f16423
+  - enabled: 1
+    path: Assets/Scenes/Final Proj/Checkpoint4.unity
+    guid: f9d3dcbf5538d4240a43c7341ed4ba52
+  - enabled: 1
+    path: Assets/Scenes/Final Proj/4.Senior.unity
+    guid: 54bd3beb7669346088884700758c589b
   - enabled: 1
     path: Assets/Scenes/Final Proj/WinScreen.unity
     guid: e766df7a13999455cb66c94c69f21e6f
-  - enabled: 0
-    path: Assets/Scenes/Final Proj/Diana_2.unity
-    guid: 7c089582fee07451c9be2013db6fb0f8
-  - enabled: 0
-    path: Assets/Scenes/Final Proj/Level 1.unity
-    guid: 39fc75a763de241318f80d2df4f335e6
-  - enabled: 1
-    path: Assets/Scenes/Final Proj/Tutorial.unity
-    guid: a4e712c862dde4847b15f8af7350d2d4
-  - enabled: 0
-    path: Assets/Scenes/Final Proj/Level1_mj.unity
-    guid: 84d2132486d0d4dfb9db63a325316abd
-  - enabled: 1
-    path: Assets/Scenes/Final Proj/Level1.unity
-    guid: 77d40922da3a1452c8122cca891488de
   - enabled: 1
     path: Assets/Scenes/Final Proj/Lose.unity
     guid: 72b10ebe7333a4418aeb06f832648003
   - enabled: 1
     path: Assets/Scenes/Example Slides.unity
     guid: 238700fbff3d7490c86cc263d8a70cab
-  - enabled: 1
-    path: Assets/Scenes/Final Proj/Level2_Copy_Diana.unity
-    guid: 28513d6abaa39594b816c930d0f16423
-  - enabled: 1
-    path: Assets/Scenes/Final Proj/Choose Major.unity
-    guid: 887489bbd63cd42b1980090b4311e262
-  - enabled: 1
-    path: Assets/Scenes/Final Proj/Choose Major 2.unity
-    guid: 722aaf9c2e06140d1a6085eb62cd677d
   m_configObjects: {}

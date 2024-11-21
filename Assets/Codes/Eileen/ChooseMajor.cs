@@ -10,6 +10,7 @@ public class ChooseMajor : MonoBehaviour
     public GameObject choice3;
     public GameObject choice4;
     public ProgressBarsControl progressBarsControl;
+    public PlayerController_Levels playerController;
 
     private void Start()
     {
@@ -24,28 +25,48 @@ public class ChooseMajor : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-           Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
 
             if (hit.collider != null)
             {
+
+
                 // Check which GameObject was clicked
                 if (hit.collider.gameObject == choice1)
                 {
-                    progressBarsControl.setMajor(2.0f, "Communications"); 
+                    progressBarsControl.setMajor(2.0f, "Communications");
+                    playerController.ResumePlayer();
+
+
+
                 }
                 else if (hit.collider.gameObject == choice2)
                 {
                     progressBarsControl.setMajor(2.5f, "Business");
+                    playerController.ResumePlayer();
+
+
+
                 }
                 else if (hit.collider.gameObject == choice3)
                 {
                     progressBarsControl.setMajor(3.0f, "Computer Science");
+                    playerController.ResumePlayer();
+
+
+
                 }
                 else if (hit.collider.gameObject == choice4)
                 {
                     progressBarsControl.setMajor(3.5f, "Pre-Med");
-                 }
+                    playerController.ResumePlayer();
+
+
+
+                }
+
+
             }
         }
     }

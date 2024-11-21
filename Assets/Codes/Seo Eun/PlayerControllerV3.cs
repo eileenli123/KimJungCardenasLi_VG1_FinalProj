@@ -75,14 +75,14 @@ public class PlayerControllerV3 : MonoBehaviour
         HandleJumpInput();
         DetectClimbable();
         HandleClimbingInput();
-         HandleMovement();
+        HandleMovement();
         HandleClimbing();
         UpdateAnimator();
     }
 
     void FixedUpdate()
     {
-       
+
     }
 
     /// <summary>

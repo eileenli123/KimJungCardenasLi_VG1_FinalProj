@@ -9,9 +9,18 @@ public class GemCollect : MonoBehaviour
     public float increaseAmount = 1f;
     private ProgressBarsControl progressBarControl;
 
+    public AudioClip collectSound;
+    private AudioSource audioSource;
+
     void Start()
     {
         progressBarControl = FindObjectOfType<ProgressBarsControl>();
+        audioSource = gameObject.GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+        audioSource.volume = 5.0f;
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -30,7 +39,11 @@ public class GemCollect : MonoBehaviour
                     progressBarControl.IncreaseSocial(increaseAmount);
                     break;
             }
-            Destroy(gameObject);
+            if (collectSound != null)
+            {
+                audioSource.PlayOneShot(collectSound);
+            }
+            Destroy(gameObject, 0.1f);
         }
     }
 }

@@ -11,7 +11,7 @@ public class EnterSchool_nextScene : MonoBehaviour
     private void Start()
     {
         currentSceneName = SceneManager.GetActiveScene().name;
-        Debug.Log("new level started: " + currentSceneName); 
+        Debug.Log("new level started: " + currentSceneName);
     }
 
 
@@ -25,29 +25,52 @@ public class EnterSchool_nextScene : MonoBehaviour
 
             if (currentGPA < minGPAReq)
             {
-                Debug.Log("GPA: " + currentSceneName + "did not meet req: " + minGPAReq); 
+                Debug.Log("GPA: " + currentSceneName + "did not meet req: " + minGPAReq);
                 SceneManager.LoadScene("Lose"); //just goes to lose screen (doesnt reset stats until main menu pressed) 
-            } else
+            }
+            else
             {
                 ProgressBarsControl.instance.setAllStats(); //set all stats earned from current level before loading next level 
 
 
                 //TODO: conditional checking (May be better to enumerate instead)
-                if (currentSceneName == "Tutorial")
+                if (currentSceneName == "0.Tutorial")
                 {
-                    SceneManager.LoadScene("Choose Major");
-                } else if (currentSceneName == "Choose Major")
-                {
-                    SceneManager.LoadScene("Level1");
+                    SceneManager.LoadScene("Checkpoint1");
                 }
-                else if (currentSceneName == "Level1")
+                else if (currentSceneName == "Checkpoint1")
                 {
-                    SceneManager.LoadScene("Choose Major 2");
+                    SceneManager.LoadScene("1.Freshman");
                 }
-                else if (currentSceneName == "Choose Major 2")
+                else if (currentSceneName == "1.Freshman")
                 {
-                    SceneManager.LoadScene("Level2");
+                    SceneManager.LoadScene("Checkpoint2");
                 }
+                else if (currentSceneName == "Checkpoint2")
+                {
+                    SceneManager.LoadScene("2.Sophomore");
+                }
+                else if (currentSceneName == "2.Sophomore")
+                {
+                    SceneManager.LoadScene("Checkpoint3");
+                }
+                else if (currentSceneName == "Checkpoint3")
+                {
+                    SceneManager.LoadScene("3.Junior");
+                }
+                else if (currentSceneName == "3.Junior")
+                {
+                    SceneManager.LoadScene("Checkpoint4");
+                }
+                else if (currentSceneName == "Checkpoint4")
+                {
+                    SceneManager.LoadScene("4.Senior");
+                }
+                else if (currentSceneName == "4.Senior")
+                {
+                    SceneManager.LoadScene("WinScreen");
+                }
+
 
             }
 
