@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class SeniorManager : MonoBehaviour
 {
@@ -10,10 +11,15 @@ public class SeniorManager : MonoBehaviour
     public CameraMovement cameraMovement; // Reference to CameraMovement script
     private bool isPopUpActive = true;
 
+    public TextMeshProUGUI internshipLabel;
 
     void Start()
     {
         cameraMovement = FindObjectOfType<CameraMovement>(); // Get the CameraMovement script
+
+       //retrieve internship from PlayerPrefs 
+        string savedInternship = PlayerPrefs.GetString("SelectedInternship", "None");
+        internshipLabel.text = $"Intern at: {savedInternship}";
     }
 
     void Update()
