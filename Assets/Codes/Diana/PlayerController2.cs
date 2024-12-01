@@ -30,8 +30,6 @@ public class PlayerController2 : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
         _rigidbody2D = GetComponent<Rigidbody2D>();
 
-
-
     }
 
     //For animation

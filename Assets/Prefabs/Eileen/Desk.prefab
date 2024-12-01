@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 345119827401911777}
   - component: {fileID: 3347421467664114710}
   - component: {fileID: 3556140705412187086}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Counter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -269,7 +269,7 @@ GameObject:
   - component: {fileID: 4324970854358179232}
   - component: {fileID: 5212760372867294325}
   - component: {fileID: 4971430707320575489}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: chair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -382,6 +382,7 @@ MonoBehaviour:
   freezeDuration: 3
   textMeshPro: {fileID: 3556140705412187086}
   GPA_gem_prefab: {fileID: 501330171078979892, guid: b23aa99d87c6ba8428251ebd3f5d0540, type: 3}
+  textInteraction: {fileID: 0}
 --- !u!68 &4971430707320575489
 EdgeCollider2D:
   m_ObjectHideFlags: 0

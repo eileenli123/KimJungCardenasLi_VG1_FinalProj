@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 8357572498908487605}
   - component: {fileID: 6828818936889833610}
   - component: {fileID: 7734856722312560605}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Counter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -269,7 +269,7 @@ GameObject:
   - component: {fileID: 3440168055091375119}
   - component: {fileID: 4955415412942051636}
   - component: {fileID: 7701661041794858222}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: chair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -425,3 +425,7 @@ MonoBehaviour:
   progressBarsControl: {fileID: 0}
   mainCamera: {fileID: 0}
   grade: 
+  AGemCost: 0
+  BGemCost: 0
+  CGemCost: 0
+  DGemCost: 0

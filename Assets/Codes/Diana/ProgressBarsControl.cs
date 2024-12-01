@@ -39,8 +39,8 @@ public class ProgressBarsControl : MonoBehaviour
         GPABar.value = PlayerPrefs.GetFloat("GPA", 0f);
         SocialBar.value = PlayerPrefs.GetFloat("Social", 0f);
         coinCount = PlayerPrefs.GetInt("CoinCount", 0);
-        GPAScore = PlayerPrefs.GetFloat("GPAScore", 4.0f);
-        numGrades = PlayerPrefs.GetFloat("numGrades", 1f);
+        GPAScore = PlayerPrefs.GetFloat("GPAScore", 0.0f);
+        numGrades = PlayerPrefs.GetFloat("numGrades", 0f);
         major = PlayerPrefs.GetString("major", "undecided");
         gpaReq = PlayerPrefs.GetFloat("gpaReq", 2f); 
 
@@ -116,6 +116,11 @@ public class ProgressBarsControl : MonoBehaviour
         }
     }
 
+    public float getCurrGPAGemCount()
+    {
+        return GPABar.value; 
+    }
+
 
     //Social Gem Controls 
     public void IncreaseSocial(float value)
@@ -136,16 +141,22 @@ public class ProgressBarsControl : MonoBehaviour
 
     //GPA control
     public void enterGrade(float grade)
-    {   //A = 4, B=3, C=2, D=1
+    {   //A = 4, B=3, C=2, D=1, F=0
         GPAScore = ((GPAScore * numGrades) + grade) / (numGrades + 1); 
         numGrades += 1;
         UpdateGPAScoreText(); 
-
     }
 
     public void UpdateGPAScoreText()
     {
-        GPAScoreText.text = "GPA: " + GPAScore.ToString("F1");
+        if (numGrades < 1)
+        {
+            GPAScoreText.text = "GPA: N/A";
+        }
+        else
+        {
+            GPAScoreText.text = "GPA: " + GPAScore.ToString("F1");
+        }
     }
 
 

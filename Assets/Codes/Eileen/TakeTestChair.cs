@@ -8,12 +8,19 @@ public class TakeTestChair : MonoBehaviour
 {
     private bool hasActivatedOnce = false;  // To track if the effect has already been applied
     private bool hasBeenSkipped = false; // To track if the chair was skipped
-    public float freezeDuration = 3f;  // Time the player will be frozen
+    public float freezeDuration = 3f;  
     public TextMeshPro counter;
-    public ProgressBarsControl progressBarsControl; //ref to object that controls scores
+    public ProgressBarsControl progressBarsControl; 
     public Camera mainCamera;
 
     public string grade;
+
+    //manually input GPA gem cost for grades to make it different for each level
+    public float AGemCost;
+    public float BGemCost;
+    public float CGemCost;
+    public float DGemCost;
+
 
     private void Start()
     {
@@ -29,7 +36,7 @@ public class TakeTestChair : MonoBehaviour
         if (!hasActivatedOnce && !hasBeenSkipped && transform.position.x < cameraLeftEdge)
         {
             AssignFGrade();
-            hasBeenSkipped = true;  // Mark as skipped to prevent repeated F assignments
+            hasBeenSkipped = true;  // Mark as skipped 
         }
     }
 
@@ -53,30 +60,31 @@ public class TakeTestChair : MonoBehaviour
 
     private void takeTest()
     {
-        float currGPAGem = PlayerPrefs.GetFloat("GPA", 0f);
+        float currGPAGem = progressBarsControl.getCurrGPAGemCount();
 
-        if (currGPAGem >= 4)
+        //A = 4, B = 3, C = 2, D = 1, F = 0 
+        if (currGPAGem >= AGemCost)
         {
             progressBarsControl.enterGrade(4);
-            progressBarsControl.decreaseGPA(4);
+            progressBarsControl.decreaseGPA(AGemCost);
             grade = "A";
         }
-        else if (currGPAGem == 3)
+        else if (currGPAGem == BGemCost)
         {
             progressBarsControl.enterGrade(3);
-            progressBarsControl.decreaseGPA(3);
+            progressBarsControl.decreaseGPA(BGemCost);
             grade = "B";
         }
-        else if (currGPAGem == 2)
+        else if (currGPAGem == CGemCost)
         {
             progressBarsControl.enterGrade(2);
-            progressBarsControl.decreaseGPA(2);
+            progressBarsControl.decreaseGPA(CGemCost);
             grade = "C";
         }
-        else if (currGPAGem == 1)
+        else if (currGPAGem == DGemCost)
         {
             progressBarsControl.enterGrade(1);
-            progressBarsControl.decreaseGPA(1);
+            progressBarsControl.decreaseGPA(DGemCost);
             grade = "D";
         }
         else
@@ -90,7 +98,7 @@ public class TakeTestChair : MonoBehaviour
         progressBarsControl.enterGrade(0);  // Assign F grade
         grade = "F";
         counter.GetComponent<MeshRenderer>().enabled = true;
-        counter.text = "Grade Recieved: F";  // Display "F" grade if skipped
+        counter.text = "Grade Recieved: F";  
     }
 
     private IEnumerator FreezePlayerMovement(GameObject player)
@@ -99,14 +107,14 @@ public class TakeTestChair : MonoBehaviour
 
         if (playerMovement != null)
         {
-            hasActivatedOnce = true;  // Mark that the effect has occurred
+            hasActivatedOnce = true;  
             playerMovement.enabled = false;  // Disable player movement
 
             // Show the text and start the countdown
             counter.GetComponent<MeshRenderer>().enabled = true;
             StartCoroutine(Countdown(freezeDuration));
 
-            yield return new WaitForSeconds(freezeDuration);  // Wait for the freeze duration
+            yield return new WaitForSeconds(freezeDuration);  // Wait for the freeze duration (3 secs) 
 
             playerMovement.enabled = true;  // Re-enable player movement
             takeTest();
@@ -126,10 +134,10 @@ public class TakeTestChair : MonoBehaviour
         {
             counter.text = remainingTime.ToString("F0");  // Display remaining time as an integer
             yield return new WaitForSeconds(1f);  // Wait for 1 second
-            remainingTime -= 1f;  // Reduce time by 1 second
+            remainingTime -= 1f; 
         }
 
-        counter.text = "Grade Recieved: " + grade;  // Set text to display grade
+        counter.text = "Grade Recieved: " + grade;  // Display Grade
     }
 }
 

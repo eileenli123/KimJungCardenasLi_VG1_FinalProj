@@ -12967,8 +12967,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Before starting your freshman year,\nplease choose a major. \nEach has
-    different GPA requirement to pass. \n\n(Click on the major you want)"
+  m_text: "I hope you enjoyed freshman year! Are your academic interests still the
+    same? This will be your last chance to swtich. \n\n(Click on the major you want)"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 426f7a7076c5e43509d3bf000d795026, type: 2}
   m_sharedMaterial: {fileID: -2247220917585905052, guid: 426f7a7076c5e43509d3bf000d795026, type: 2}

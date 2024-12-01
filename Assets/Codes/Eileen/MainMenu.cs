@@ -24,6 +24,7 @@ public class MainMenu : MonoBehaviour
         PlayerPrefs.GetString("levelName", "Tutorial");
         SceneManager.LoadSceneAsync("0.Tutorial");
     }
+
     public void startTutorialLevel()
     {
         SceneManager.LoadSceneAsync("0.Tutorial"); //load scene 1 from build scene setting (tutorial level) 
