@@ -7,8 +7,8 @@ public class ProgressBarsControl : MonoBehaviour
     public static ProgressBarsControl instance; //create an instance to be use methods in mainMenu class
 
     //Reference to texts to update them as progress bar updates
-    public Text coinCountText;  
-    public Text GPAScoreText; 
+    public Text coinCountText;
+    public Text GPAScoreText;
     public Text GPAGemText;
     public Text socialGemText;
     public Text majorText;
@@ -17,7 +17,7 @@ public class ProgressBarsControl : MonoBehaviour
     //local trackers (need to still update player prefs as progress bar updates)
     public Slider GPABar;
     public Slider SocialBar;
-    private int coinCount; 
+    private int coinCount;
     private float GPAScore;
     private float numGrades;
     private string major;
@@ -39,18 +39,18 @@ public class ProgressBarsControl : MonoBehaviour
         GPABar.value = PlayerPrefs.GetFloat("GPA", 0f);
         SocialBar.value = PlayerPrefs.GetFloat("Social", 0f);
         coinCount = PlayerPrefs.GetInt("CoinCount", 0);
-        GPAScore = PlayerPrefs.GetFloat("GPAScore", 0.0f);
+        GPAScore = PlayerPrefs.GetFloat("GPAScore", 4.0f);
         numGrades = PlayerPrefs.GetFloat("numGrades", 0f);
         major = PlayerPrefs.GetString("major", "undecided");
-        gpaReq = PlayerPrefs.GetFloat("gpaReq", 2f); 
+        gpaReq = PlayerPrefs.GetFloat("gpaReq", 2f);
 
         //update all the text 
         UpdateCoinCountText();
         UpdateGPAGemCountText();
         UpdateSocialGemCountText();
         UpdateGPAScoreText();
-        UpdateMajorText(); 
-       
+        UpdateMajorText();
+
         // Set max values for sliders
         GPABar.maxValue = 50f;
         SocialBar.maxValue = 50f;
@@ -80,7 +80,7 @@ public class ProgressBarsControl : MonoBehaviour
 
     public void UpdateCoinCountText()
     {
-        coinCountText.text = "" + coinCount;  
+        coinCountText.text = "" + coinCount;
     }
 
 
@@ -97,16 +97,16 @@ public class ProgressBarsControl : MonoBehaviour
         }
     }
 
-    
+
     public void UpdateGPAGemCountText()
     {
-        GPAGemText.text = "GPA: " + GPABar.value;  
+        GPAGemText.text = "GPA: " + GPABar.value;
     }
 
 
     //TODO :could just pass negative value (make sure uses of decreaseGPA is removed first) 
     public void decreaseGPA(float value)
-    { 
+    {
         GPABar.value = Mathf.Clamp(GPABar.value - value, 0f, GPABar.maxValue);
         GPAGemText.text = "GPA: " + GPABar.value;
 
@@ -118,7 +118,7 @@ public class ProgressBarsControl : MonoBehaviour
 
     public float getCurrGPAGemCount()
     {
-        return GPABar.value; 
+        return GPABar.value;
     }
 
 
@@ -126,7 +126,7 @@ public class ProgressBarsControl : MonoBehaviour
     public void IncreaseSocial(float value)
     {
         SocialBar.value = Mathf.Clamp(SocialBar.value + value, 0f, SocialBar.maxValue);
-        UpdateSocialGemCountText(); 
+        UpdateSocialGemCountText();
 
         if (SocialBar.value < 0f)
         {
@@ -142,9 +142,9 @@ public class ProgressBarsControl : MonoBehaviour
     //GPA control
     public void enterGrade(float grade)
     {   //A = 4, B=3, C=2, D=1, F=0
-        GPAScore = ((GPAScore * numGrades) + grade) / (numGrades + 1); 
+        GPAScore = ((GPAScore * numGrades) + grade) / (numGrades + 1);
         numGrades += 1;
-        UpdateGPAScoreText(); 
+        UpdateGPAScoreText();
     }
 
     public void UpdateGPAScoreText()
@@ -161,7 +161,7 @@ public class ProgressBarsControl : MonoBehaviour
 
     public float getNumGrades()
     {
-        return numGrades; 
+        return numGrades;
     }
 
 
@@ -199,12 +199,12 @@ public class ProgressBarsControl : MonoBehaviour
     {
         PlayerPrefs.DeleteKey("GPA");
         PlayerPrefs.DeleteKey("Social");
-        PlayerPrefs.DeleteKey("CoinCount"); 
+        PlayerPrefs.DeleteKey("CoinCount");
         PlayerPrefs.DeleteKey("GPAScore");
         PlayerPrefs.DeleteKey("numGrades");
         PlayerPrefs.DeleteKey("gpaReq");
         PlayerPrefs.DeleteKey("levelName");
-        PlayerPrefs.DeleteKey("major"); 
+        PlayerPrefs.DeleteKey("major");
     }
 
 
