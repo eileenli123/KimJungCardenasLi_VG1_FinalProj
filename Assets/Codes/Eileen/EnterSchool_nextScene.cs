@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class EnterSchool_nextScene : MonoBehaviour
 {
     private string currentSceneName;
+   
 
     private void Start()
     {
@@ -22,8 +23,10 @@ public class EnterSchool_nextScene : MonoBehaviour
         {
             float currentGPA = PlayerPrefs.GetFloat("GPAScore", 4f);
             float minGPAReq = PlayerPrefs.GetFloat("gpaReq", 2.0f);
+            float numGrades = ProgressBarsControl.instance.getNumGrades(); 
 
-            if (currentGPA < minGPAReq)
+            
+            if (numGrades>0 && currentGPA < minGPAReq)
             {
                 Debug.Log("GPA: " + currentSceneName + "did not meet req: " + minGPAReq);
                 SceneManager.LoadScene("Lose"); //just goes to lose screen (doesnt reset stats until main menu pressed) 

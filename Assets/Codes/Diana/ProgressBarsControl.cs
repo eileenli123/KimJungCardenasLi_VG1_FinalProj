@@ -159,6 +159,11 @@ public class ProgressBarsControl : MonoBehaviour
         }
     }
 
+    public float getNumGrades()
+    {
+        return numGrades; 
+    }
+
 
     //major control
     public void setMajor(float gpa, string majorName)
