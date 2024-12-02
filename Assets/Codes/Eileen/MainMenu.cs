@@ -32,7 +32,8 @@ public class MainMenu : MonoBehaviour
 
     public void goToMainMenu()
     {
-        ProgressBarsControl.instance.RestartGame(); //reset all stats to 0
+        //ProgressBarsControl.instance.RestartGame(); //reset all stats to 0
+        PlayerPrefs.DeleteAll(); 
         SceneManager.LoadSceneAsync("StartMenu");
     }
 

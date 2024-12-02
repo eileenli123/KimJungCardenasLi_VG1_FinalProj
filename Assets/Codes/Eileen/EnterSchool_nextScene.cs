@@ -21,10 +21,11 @@ public class EnterSchool_nextScene : MonoBehaviour
         //TODO: different levels have different scripts -- change to be consistent
         if (other.gameObject.GetComponent<PlayerController2>() || other.gameObject.CompareTag("Player"))
         {
-            float currentGPA = PlayerPrefs.GetFloat("GPAScore", 4f);
+            float currentGPA = ProgressBarsControl.instance.getCurrGPA(); 
             float minGPAReq = PlayerPrefs.GetFloat("gpaReq", 2.0f);
-            float numGrades = ProgressBarsControl.instance.getNumGrades(); 
+            float numGrades = ProgressBarsControl.instance.getNumGrades();
 
+            Debug.Log(currentGPA);
             
             if (numGrades>0 && currentGPA < minGPAReq)
             {

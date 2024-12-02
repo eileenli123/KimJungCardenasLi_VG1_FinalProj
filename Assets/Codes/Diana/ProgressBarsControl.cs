@@ -55,6 +55,8 @@ public class ProgressBarsControl : MonoBehaviour
         GPABar.maxValue = 50f;
         SocialBar.maxValue = 50f;
 
+        Debug.Log(numGrades);
+
     }
 
 
@@ -121,6 +123,10 @@ public class ProgressBarsControl : MonoBehaviour
         return GPABar.value;
     }
 
+    public float getCurrGPA()
+    {
+        return GPAScore; 
+    }
 
     //Social Gem Controls 
     public void IncreaseSocial(float value)
@@ -149,14 +155,15 @@ public class ProgressBarsControl : MonoBehaviour
 
     public void UpdateGPAScoreText()
     {
-        if (numGrades < 1)
-        {
-            GPAScoreText.text = "GPA: N/A";
-        }
-        else
-        {
-            GPAScoreText.text = "GPA: " + GPAScore.ToString("F1");
-        }
+        GPAScoreText.text = "GPA: " + GPAScore.ToString("F1");
+        //if (numGrades < 1)
+        //{
+        //    GPAScoreText.text = "GPA: N/A";
+        //}
+        //else
+        //{
+        //    GPAScoreText.text = "GPA: " + GPAScore.ToString("F1");
+        //}
     }
 
     public float getNumGrades()
@@ -184,7 +191,7 @@ public class ProgressBarsControl : MonoBehaviour
     {
         PlayerPrefs.SetFloat("GPA", GPABar.value);
         PlayerPrefs.SetFloat("Social", SocialBar.value);
-        PlayerPrefs.SetFloat("numGrades", numGrades + 1);
+        PlayerPrefs.SetFloat("numGrades", numGrades);
         PlayerPrefs.SetFloat("GPAScore", GPAScore);
         PlayerPrefs.SetInt("CoinCount", coinCount);
         PlayerPrefs.SetFloat("gpaReq", gpaReq);
@@ -204,6 +211,7 @@ public class ProgressBarsControl : MonoBehaviour
         PlayerPrefs.DeleteKey("numGrades");
         PlayerPrefs.DeleteKey("gpaReq");
         PlayerPrefs.DeleteKey("levelName");
+        PlayerPrefs.DeleteKey("SelectedInternship"); 
         PlayerPrefs.DeleteKey("major");
     }
 

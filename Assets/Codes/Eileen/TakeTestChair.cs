@@ -61,6 +61,7 @@ public class TakeTestChair : MonoBehaviour
     private void takeTest()
     {
         float currGPAGem = progressBarsControl.getCurrGPAGemCount();
+        Debug.Log("curr GPA gem" + currGPAGem); 
 
         //A = 4, B = 3, C = 2, D = 1, F = 0 
         if (currGPAGem >= AGemCost)
@@ -69,19 +70,19 @@ public class TakeTestChair : MonoBehaviour
             progressBarsControl.decreaseGPA(AGemCost);
             grade = "A";
         }
-        else if (currGPAGem == BGemCost)
+        else if (currGPAGem >= BGemCost)
         {
             progressBarsControl.enterGrade(3);
             progressBarsControl.decreaseGPA(BGemCost);
             grade = "B";
         }
-        else if (currGPAGem == CGemCost)
+        else if (currGPAGem >= CGemCost)
         {
             progressBarsControl.enterGrade(2);
             progressBarsControl.decreaseGPA(CGemCost);
             grade = "C";
         }
-        else if (currGPAGem == DGemCost)
+        else if (currGPAGem >= DGemCost)
         {
             progressBarsControl.enterGrade(1);
             progressBarsControl.decreaseGPA(DGemCost);
