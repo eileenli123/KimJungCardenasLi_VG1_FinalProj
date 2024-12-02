@@ -25690,8 +25690,40 @@ PrefabInstance:
       value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4077826505115376064, guid: ba38e9876fc325a4d80ea0074adc2964, type: 3}
+      propertyPath: choices.Array.data[2].coinCost
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4077826505115376064, guid: ba38e9876fc325a4d80ea0074adc2964, type: 3}
+      propertyPath: choices.Array.data[0].friendResponse
+      value: Bet!
+      objectReference: {fileID: 0}
+    - target: {fileID: 4077826505115376064, guid: ba38e9876fc325a4d80ea0074adc2964, type: 3}
+      propertyPath: choices.Array.data[0].playerDialogue
+      value: Okey, fine.
+      objectReference: {fileID: 0}
+    - target: {fileID: 4077826505115376064, guid: ba38e9876fc325a4d80ea0074adc2964, type: 3}
+      propertyPath: choices.Array.data[1].friendResponse
+      value: Oh.... ok.
+      objectReference: {fileID: 0}
+    - target: {fileID: 4077826505115376064, guid: ba38e9876fc325a4d80ea0074adc2964, type: 3}
+      propertyPath: choices.Array.data[1].playerDialogue
+      value: Let's do a two man.
+      objectReference: {fileID: 0}
+    - target: {fileID: 4077826505115376064, guid: ba38e9876fc325a4d80ea0074adc2964, type: 3}
+      propertyPath: choices.Array.data[2].friendResponse
+      value: I'm breaking up with you!!!!
+      objectReference: {fileID: 0}
+    - target: {fileID: 4077826505115376064, guid: ba38e9876fc325a4d80ea0074adc2964, type: 3}
+      propertyPath: choices.Array.data[2].playerDialogue
+      value: No
+      objectReference: {fileID: 0}
+    - target: {fileID: 4077826505115376064, guid: ba38e9876fc325a4d80ea0074adc2964, type: 3}
       propertyPath: choices.Array.data[0].socialGemReward
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4077826505115376064, guid: ba38e9876fc325a4d80ea0074adc2964, type: 3}
+      propertyPath: choices.Array.data[1].academicGemReward
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5800589242334286665, guid: ba38e9876fc325a4d80ea0074adc2964, type: 3}
       propertyPath: m_Name
@@ -32751,6 +32783,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4077826505115376064, guid: ba38e9876fc325a4d80ea0074adc2964, type: 3}
+      propertyPath: choices.Array.data[1].academicGemReward
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5800589242334286665, guid: ba38e9876fc325a4d80ea0074adc2964, type: 3}
       propertyPath: m_Name
       value: friend

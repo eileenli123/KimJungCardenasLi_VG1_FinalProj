@@ -12808,7 +12808,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Google (10 academic gems, 10 social gems)
+  m_text: Google (10 academic gems, 40 social gems)
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 426f7a7076c5e43509d3bf000d795026, type: 2}
   m_sharedMaterial: {fileID: -2247220917585905052, guid: 426f7a7076c5e43509d3bf000d795026, type: 2}
@@ -15357,7 +15357,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Dying Company (1 academic gem, 1 social gem)
+  m_text: Dying Company (1 academic gem, 4 social gem)
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 426f7a7076c5e43509d3bf000d795026, type: 2}
   m_sharedMaterial: {fileID: -2247220917585905052, guid: 426f7a7076c5e43509d3bf000d795026, type: 2}
@@ -15597,7 +15597,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Government Agency (5 academic gems, 6 social gems)
+  m_text: Government Agency (5 academic gems, 24 social gems)
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 426f7a7076c5e43509d3bf000d795026, type: 2}
   m_sharedMaterial: {fileID: -2247220917585905052, guid: 426f7a7076c5e43509d3bf000d795026, type: 2}
@@ -15905,7 +15905,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Local Business (3 academic gems, 5 social gems)
+  m_text: Local Business (3 academic gems, 20 social gems)
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 426f7a7076c5e43509d3bf000d795026, type: 2}
   m_sharedMaterial: {fileID: -2247220917585905052, guid: 426f7a7076c5e43509d3bf000d795026, type: 2}
@@ -16641,10 +16641,10 @@ MonoBehaviour:
   - 1
   - 10
   socialGemRequirements:
-  - 6
-  - 5
-  - 1
-  - 10
+  - 24
+  - 20
+  - 4
+  - 40
   progressBarControl: {fileID: 0}
 --- !u!114 &7442273501955427459
 MonoBehaviour:
