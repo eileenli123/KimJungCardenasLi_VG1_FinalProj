@@ -17,7 +17,7 @@ public class SeniorManager : MonoBehaviour
     {
         cameraMovement = FindObjectOfType<CameraMovement>(); // Get the CameraMovement script
 
-       //retrieve internship from PlayerPrefs 
+        //retrieve internship from PlayerPrefs 
         string savedInternship = PlayerPrefs.GetString("SelectedInternship", "None");
         internshipLabel.text = $"Intern at: {savedInternship}";
     }
