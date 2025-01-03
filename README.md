@@ -1,4 +1,4 @@
-<img width="1019" alt="Screenshot 2024-12-01 at 10 48 58 PM" src="https://github.com/user-attachments/assets/d589ea94-ada4-433e-96d4-b3eac4581719" /># Game Title: **[Get that Degree]**
+# "Get that Degree" Unity Game
 
 ## Overview  
 **[Get that Degree]** is a thrilling Unity-based game where players navigate through a series of challenging levels of college years to graduate. The goal is to finish all levels while optimizing gameplay stats to maximize the final “score” determined by the player’s career outcome, major, gpa, and social success.  
