@@ -5,7 +5,7 @@
 
 ## Play Now  
 You can play the game online directly using this link:  
-[Play **[Your Game Name]** on itch.io](https://jmijung.itch.io/wow?secret=Cd41YCG72QbxK6RyHNVUolsfL0)  
+[Play **[Get that Degree]** on itch.io](https://jmijung.itch.io/wow?secret=Cd41YCG72QbxK6RyHNVUolsfL0)  
 
 ## Gameplay Mechanics  
 - **Objective**: Reach the end of each level and successfully complete all levels to graduate and win. There are 5 levels in total: 1. Orientation Week, 2. Freshman Year, 3. Sophomore Year, 4. Junior Year, 5. Senior Year. Upon finishing each level, the player has to go through a checkpoint where the player can choose a major, and purchase social or academic gems using coins they earned during the game.
@@ -24,16 +24,22 @@ You can play the game online directly using this link:
 ## Screenshot  
 <img width="500" alt="orientation week" src="https://github.com/user-attachments/assets/70ec57a1-5faf-46ab-be34-1bf8cda4b7b3" />
 *Figure 1: Orientation Week Level*
+
 <img width="500" alt="freshman" src="https://github.com/user-attachments/assets/405ee26f-456c-4b9a-9735-a565d8375a6d" />
 *Figure 2: Freshman Year Level*
+
 <img width="500" alt="sophomore" src="https://github.com/user-attachments/assets/b0c9e859-4f64-4b0d-be3c-754b8f371fb5" />
 *Figure 3: Sophomore Year Level*
+
 <img width="500" alt="junior" src="https://github.com/user-attachments/assets/7972813a-3886-49c4-b7b2-c37c56298b93" />
 *Figure 4: Junior Year Level*
+
 <img width="500" alt="senior" src="https://github.com/user-attachments/assets/26a77665-1f06-4b3f-b76d-2fc21ab1d496" />
 *Figure 5: Senior Year Level*
+
 <img width="500" alt="checkpoint" src="https://github.com/user-attachments/assets/4e230391-6fe8-4176-87eb-072cc29ebfbd" />
-*Figure 6: Checkpoint where the player gets to choose the major and purchase social/GPA gems with coins*
+*Figure 6: Checkpoint*
+
 <img width="500" alt="score" src="https://github.com/user-attachments/assets/1f11bd67-9a30-444d-a1d0-2218962bdb63" />
 *Figure 7: Score Board Example*
 
