@@ -5,7 +5,7 @@
 
 ## Play Now  
 You can play the game online directly using this link:  
-[Play **[Get that Degree]** on itch.io](https://jmijung.itch.io/wow?secret=Cd41YCG72QbxK6RyHNVUolsfL0)  
+>>[Play **[Get that Degree]** on itch.io](https://jmijung.itch.io/wow?secret=Cd41YCG72QbxK6RyHNVUolsfL0)  
 
 ## Gameplay Mechanics  
 - **Objective**: Reach the end of each level and successfully complete all levels to graduate and win. There are 5 levels in total: 1. Orientation Week, 2. Freshman Year, 3. Sophomore Year, 4. Junior Year, 5. Senior Year. Upon finishing each level, the player has to go through a checkpoint where the player can choose a major, and purchase social or academic gems using coins they earned during the game.
